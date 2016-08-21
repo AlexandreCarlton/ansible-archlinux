@@ -1,0 +1,36 @@
+---
+
+# Install AUR helper
+# Hopefully ansible will support this out of the box.
+# I mean, this will fall over at the slightest breeze.
+
+# Execute non-user things as 'nobody' or as ansible_ssh_user
+# Then we could shift this into 'system'
+
+- name: Install ccache for makepkg
+  pacman: name=ccache
+  become: yes
+
+- name: Download and extract aura
+  unarchive: src="https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz"
+             dest="/home/alexandre"
+             copy=no
+  become: yes
+  become_user: alexandre
+
+- name: Install aura dependencies
+  pacman: name=abs
+  become: yes
+
+- name: Prepare aura installation
+  command: makepkg --noconfirm
+  args:
+    chdir: /home/alexandre/aura-bin
+  become: yes
+  become_user: alexandre
+
+- name: Install aura
+  command: pacman -U aura-bin-1.3.6-1-x86_64.pkg.tar.xz --noconfirm
+  args:
+    chdir: /home/alexandre/aura-bin
+  become: yes

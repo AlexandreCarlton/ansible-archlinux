@@ -1,0 +1,32 @@
+---
+
+- include: xorg.yml
+- include: fonts.yml
+- include: media.yml
+- include: browsers.yml
+- include: themes.yml
+- include: window-manager.yml
+
+
+
+
+- name: Install gtk themes
+  pacman: name={{ item }}
+  with_items:
+    - gtk-engine-murrine
+    - gtk-engines
+    - numix-themes
+  become: yes
+
+- name: Install notifier
+  pacman: name={{ item }}
+  with_items:
+    - dunst
+    - notification-daemon
+  become: yes
+
+
+
+- name: Install redshift
+  pacman: name=redshift
+  become: yes

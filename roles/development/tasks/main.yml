@@ -1,0 +1,13 @@
+---
+
+- include: c-c++.yml
+- include: editors.yml
+- include: python.yml
+- include: haskell.yml
+- include: terminal.yml
+
+- name: Create "Code" folder
+  file: path=/home/alexandre/Code
+        state=directory
+  become: yes
+  become_user: alexandre

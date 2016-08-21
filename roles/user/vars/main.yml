@@ -1,0 +1,9 @@
+---
+
+# TODO: Stick this in group_vars/all (or something similar)
+username: alexandre
+dotfiles_repository: https://github.com/AlexandreCarlton/dotfiles.git
+user_shell: zsh
+hostname: flygon
+# Vagrant password
+user_password: $6$rounds=656000$X/JkEMVY51leVzha$TkDZrsoV1Z1SITO7ccgt81SSy4Map3GIn1T45B1fA.KxT6qcv3dyB.ybZR3t.uzqbvY9SSqY95PfVDQ5id9vY1

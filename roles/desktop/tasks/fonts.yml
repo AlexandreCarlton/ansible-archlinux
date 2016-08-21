@@ -1,0 +1,25 @@
+---
+
+- name: Install fonts
+  pacman: name={{ item }}
+  with_items:
+    - ttf-symbola
+    - ttf-liberation
+    - ttf-ubuntu-font-family
+    - ttf-droid
+    - noto-fonts
+    - ttf-dejavu
+  become: yes
+
+- name: Install fonts (AUR)
+  command: aura -A --delmakedeps --noconfirm {{ item }}
+  with_items:
+    - gohufont
+    - ttf-font-awesome
+    - ttf-mac-fonts
+    - ttf-ms-fonts
+    - ttf-roboto
+    - ttf-roboto-mono
+    - ttf-vista-fonts
+    - siji-git
+  become: yes

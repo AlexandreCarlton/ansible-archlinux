@@ -1,0 +1,24 @@
+---
+
+# Need 32-bit libraries :(
+# - name: Install steam
+#   pacman: name=steam
+#   become: yes
+
+- name: Install retroarch with cores
+  pacman: name=libretro
+  become: yes
+
+- name: Install video player
+  pacman: name=mpv
+  become: yes
+
+- name: Install pdf reader
+  pacman: name={{ item }}
+  with_items:
+   - zathura
+   - zathura-cb
+   - zathura-djvu
+   - zathura-pdf-mupdf
+   - zathura-ps
+  become: yes

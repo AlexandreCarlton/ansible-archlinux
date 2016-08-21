@@ -1,0 +1,30 @@
+---
+# Just install everything with xorg for now
+# Later we can discover what we actually need
+- name: Install xorg
+  pacman: name={{ item }}
+  with_items:
+    - xorg
+    - xorg-server
+    - xorg-server-utils
+    - xorg-apps
+  become: yes
+
+# Had to manually rewrite this; could be a line-ending thing.
+- name: Allow Xorg to be used by anyone
+  copy: src=etc/X11/Xwrapper.config
+        dest=/etc/X11/Xwrapper.config
+  become: yes
+
+#- name: Allow Xorg to be used by anyone
+#  lineinfile: dest=/etc/X11/Xwrapper.config
+#              create=yes
+#              line={{ item }}
+#  with_items:
+#    - "allowed_users=anybody"
+#    - "needs_root_rights=yes"
+#  become: yes
+
+- name: Set default display
+  lineinfile: "dest=/etc/systemd/user.conf state=present line=DefaultEnvironment=DISPLAY=:0"
+  become: yes

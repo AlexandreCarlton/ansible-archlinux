@@ -1,0 +1,5 @@
+---
+# python -c "from passlib.hash import sha512_crypt; print(sha512_crypt.encrypt('vagrant'))"
+vagrant_password: $6$rounds=656000$X/JkEMVY51leVzha$TkDZrsoV1Z1SITO7ccgt81SSy4Map3GIn1T45B1fA.KxT6qcv3dyB.ybZR3t.uzqbvY9SSqY95PfVDQ5id9vY1
+
+vagrant_public_key_url: https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub

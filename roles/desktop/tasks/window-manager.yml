@@ -1,0 +1,48 @@
+---
+
+- name: Install window manager
+  pacman: name={{ item }}
+  with_items:
+    - bspwm
+    - sxhkd
+  become: yes
+
+- name: Install window manager utilities
+  pacman: name={{ item }}
+  with_items:
+    - rofi
+    - i3lock
+    - unclutter
+    - feh
+    - scrot
+    - graphicsmagick
+  become: yes
+
+- name: Install window manager utilities (AUR)
+  command: aura -A --delmakedeps --noconfirm {{ item }}
+  with_items:
+    - lemonbar
+  become: yes
+
+- name: Install lighstatus dependencies
+  pacman: name={{ item }}
+  with_items:
+    - alsa-lib
+    - libevdev
+    - wireless_tools
+  become: yes
+
+- name: Download lightstatus
+  git: repo=https://github.com/AlexandreCarlton/lightstatus.git
+       dest=/home/alexandre/Code/lightstatus
+  become: yes
+  become_user: alexandre
+
+- name: Make lightstatus
+  make: chdir=/home/alexandre/Code/lightstatus
+  become: yes
+  become_user: alexandre
+
+- name: Install lightstatus
+  make: chdir=/home/alexandre/Code/lightstatus target=install
+  become: yes

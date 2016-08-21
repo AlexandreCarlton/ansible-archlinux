@@ -1,0 +1,18 @@
+---
+- name: Install VirtualBox Guest Additions
+  pacman: name={{ item }} 
+  with_items:
+    # Order seems to matter here (modules-arch => utils).
+    - virtualbox-guest-modules-arch 
+    - virtualbox-guest-utils
+  become: yes
+
+# This loads the modules vbox{guest,sf,video} 
+# and syncs the guest time with that of the host's
+- name: Enable vboxservice
+  service: name=vboxservice 
+           enabled=yes
+  become: yes
+
+# TODO: Launch VBoxClient-all  on startup
+# Make a service file to do this.

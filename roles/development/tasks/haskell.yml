@@ -1,0 +1,12 @@
+---
+
+# It seems like the Arch-Haskell repository is now in community.
+
+- name: Install haskell tools
+  pacman: name={{ item }}
+  with_items:
+    - ghc
+    - haskell-ghc-mod
+    - hasktags
+    - hoogle
+  become: yes

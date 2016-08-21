@@ -1,0 +1,29 @@
+---
+
+# Install and deploy dotfiles
+
+- name: Install git to download dotfiles
+  package: name=git state=latest
+  become: yes
+
+- name: Install stow to bootstrap dotfiles
+  package: name=stow state=latest
+  become: yes
+
+- name: Clone or update dotfiles repository
+  git: repo={{ dotfiles_repository }} 
+       dest="/home/{{ username }}/.dotfiles"
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Install development dotfiles
+  make: target=development
+        chdir=/home/{{ username }}/.dotfiles
+  become: yes
+  become_user: "{{ username }}"
+
+- name: Install desktop dotfiles
+  make: target=desktop
+        chdir=/home/{{ username }}/.dotfiles
+  become: yes
+  become_user: "{{ username }}"

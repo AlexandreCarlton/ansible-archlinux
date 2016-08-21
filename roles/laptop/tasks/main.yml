@@ -1,0 +1,40 @@
+---
+
+# TODO: Add xf86 graphics
+# Will need to adjust based on laptop model.
+
+# TODO: 
+
+
+- name: Install connection manager
+  pacman: name=connman
+  become: yes
+
+- name: Install battery / thermal reader
+  pacman: name=acpi
+  become: yes
+
+- name: Install thermald (AUR)
+  command: aura -A --delmakedeps --noconfirm thermald-git
+  become: yes
+
+- name: Enable thermald
+  service: name=thermald
+           enabled=yes
+  become: yes
+
+- name: Install automounter (AUR)
+  command: aura -A --delmakedeps --noconfirm ldm
+  become: yes
+
+- name: Enable automounter
+  service: name=ldm
+           enabled=yes
+  become: yes
+
+# TODO: Make this a template 
+- name: Install automounter configuration
+  copy: src=etc/ldm.conf 
+        dest=/etc/ldm.conf
+  become: yes
+

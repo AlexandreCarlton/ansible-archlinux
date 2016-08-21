@@ -1,0 +1,41 @@
+---
+
+# fasd (git)
+
+- name: Install terminal emulators
+  pacman: name={{ item }}
+  with_items:
+    - rxvt-unicode
+    - xterm
+    - xclip
+  become: yes
+
+- name: Install shells
+  pacman: name={{ item }}
+  with_items:
+    - zsh
+    - fish
+  become: yes
+
+# TODO: split this up
+- name: Install shell utilities
+  pacman: name={{ item }}
+  with_items:
+    - tmux
+    - thefuck
+    - zsh
+    - htop
+    - diff-so-fancy
+    - the_silver_searcher
+    - wget
+    - ranger
+    - pass
+    - git
+    - fzf
+  become: yes
+
+- name: Install shell utilities (AUR)
+  command: aura -A --delmakedeps --noconfirm {{ item }}
+  with_items:
+    - fasd
+  become: yes

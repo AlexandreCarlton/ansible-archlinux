@@ -1,0 +1,18 @@
+---
+
+# TODO: Set up 
+
+- name: Install web browser
+  pacman: name=chromium
+  become: yes
+
+- name: Install profile-sync-daemon (AUR)
+  command: aura -A --delmakedeps --noconfirm profile-sync-daemon
+  become: yes
+
+- name: Use psd-overlay-helper
+  lineinfile:
+    dest: /etc/sudoers
+    line: "alexandre ALL=NOPASSWD: /usr/bin/psd-overlay-helper"
+    validate: visudo -cf %s
+  become: yes
