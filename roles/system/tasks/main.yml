@@ -4,23 +4,21 @@
 
 # Before we dive into other roles, update the distro to guarantee current packages
 - name: Upgrade Arch Linux
-  pacman: update_cache=yes
-          upgrade=yes
+  pacman:
+    update_cache: yes
+    upgrade: yes
   become: yes
 
-# TODO: Hopefully, this:
-# - replaces the line if it exists
-# - inserts it if it doesn't
 - name: Give wheel group sudo (with password) privileges
-  lineinfile: dest=/etc/sudoers  
-              line='%wheel ALL=(ALL) ALL'
-              state=present
-              validate='visudo -cf %s'
+  lineinfile:
+    dest: /etc/sudoers  
+    line: "%wheel ALL=(ALL) ALL"
+    state: present
+    validate: 'visudo -cf %s'
   become: yes
 
-# TODO: Include in system role once we have global variables.
-- name: Set hostname to {{ hostname }}
-  hostname: name={{ hostname }}
+- name: Set hostname to {{ system.hostname }}
+  hostname: name={{ system.hostname }}
   become: yes
 
 - include: dash.yml

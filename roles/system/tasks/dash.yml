@@ -7,8 +7,9 @@
   become: yes
 
 - name: Set /bin/sh to point to dash
-  file: path=/bin/sh
-        src=dash
-        state=link 
-        force=yes
+  file:
+    path: /bin/sh
+    src: dash
+    state: link 
+    force: yes
   become: yes
