@@ -11,19 +11,16 @@
   become: yes
 
 - name: Clone or update dotfiles repository
-  git: repo={{ dotfiles_repository }} 
-       dest="/home/{{ username }}/.dotfiles"
+  git: repo={{ dotfiles.repository }} 
+       dest="/home/{{ user.name }}/.dotfiles"
+       depth=1
+       recursive=yes
   become: yes
-  become_user: "{{ username }}"
+  become_user: "{{ user.name }}"
 
-- name: Install development dotfiles
-  make: target=development
-        chdir=/home/{{ username }}/.dotfiles
+- name: Install dotfiles
+  command: "{{ dotfiles.install }}"
+  args:
+    chdir: /home/{{ user.name }}/.dotfiles
   become: yes
-  become_user: "{{ username }}"
-
-- name: Install desktop dotfiles
-  make: target=desktop
-        chdir=/home/{{ username }}/.dotfiles
-  become: yes
-  become_user: "{{ username }}"
+  become_user: "{{ user.name }}"
