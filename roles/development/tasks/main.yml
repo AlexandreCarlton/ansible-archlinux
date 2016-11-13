@@ -2,8 +2,9 @@
 
 - include: c-c++.yml
 - include: editors.yml
-- include: python.yml
 - include: haskell.yml
+- include: javascript.yml
+- include: python.yml
 - include: terminal.yml
 
 - name: Create "Code" folder
