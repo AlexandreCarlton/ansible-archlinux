@@ -1,18 +1,45 @@
 ---
 - name: Install VirtualBox Guest Additions
-  pacman: name={{ item }} 
+  pacman: name={{ item }}
   with_items:
-    # Order seems to matter here (modules-arch => utils).
-    - virtualbox-guest-modules-arch 
+    # Order seems to matter here (modules-arch before utils).
+    - virtualbox-guest-modules-arch
     - virtualbox-guest-utils
   become: yes
 
-# This loads the modules vbox{guest,sf,video} 
+# This loads the modules vbox{guest,sf,video}
 # and syncs the guest time with that of the host's
 - name: Enable vboxservice
-  service: name=vboxservice 
-           enabled=yes
+  service:
+    name: vboxservice
+    enabled: yes
   become: yes
 
-# TODO: Launch VBoxClient-all  on startup
-# Make a service file to do this.
+- name: Install VBoxClient services
+  template:
+    src: vboxclient.service.j2
+    dest: /etc/systemd/user/vboxclient-{{ item }}.service
+  with_items:
+    - checkhostversion
+    - clipboard
+    - display
+    - draganddrop
+    - seamless
+  become: yes
+
+# Can't seem to enable these services because there is no running systemd instance for {{ user.name }}
+# What if we just manually created the links in $HOME/.config/systemd/user?
+# - name: Enable VBoxClient services
+#   systemd:
+#     name: vboxclient-{{ item }}
+#     enabled: yes
+#     user: yes
+#     daemon_reload: yes
+#   with_items:
+#     - checkhostversion
+#     - clipboard
+#     - display
+#     - draganddrop
+#     - seamless
+#   become: yes
+#   become_user: "{{ user.name }}"

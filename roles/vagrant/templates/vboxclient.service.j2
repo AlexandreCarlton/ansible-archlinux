@@ -1,0 +1,9 @@
+[Unit]
+Description=VirtualBox X Window System guest services
+Requires=x11.target
+
+[Service]
+ExecStart=/usr/bin/VBoxClient --{{ item }} --nodaemon
+
+[Install]
+WantedBy=default.target
