@@ -27,25 +27,27 @@
   become: yes
 
 - name: Create vagrant .ssh folder with correct permissions.
-  file: path={{ ansible_env.HOME }}/.ssh
+  file: path=/home/vagrant/.ssh
         state=directory
         mode=0700
+  become: yes
   become_user: vagrant
 
 - name: Create vagrant authorized keys file.
   get_url: url=https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub
-           dest={{ ansible_env.HOME }}/.ssh/authorized_keys
+           dest=/home/vagrant/.ssh/authorized_keys
            mode=0600
+  become: yes
   become_user: vagrant
 
 
 # This can result in a speedup for Vagrant.
-- name: Avoid DNS lookup on connecting SSH client
-  lineinfile: dest=/etc/ssh/sshd_config
-              regexp='^#?UseDNS.*$'
-              line='UseDNS no'
-              state=present
-  become: yes
+# - name: Avoid DNS lookup on connecting SSH client
+#   lineinfile: dest=/etc/ssh/sshd_config
+#               regexp='^#?UseDNS.*$'
+#               line='UseDNS no'
+#               state=present
+#   become: yes
   
 
 
