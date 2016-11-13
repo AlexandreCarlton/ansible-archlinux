@@ -11,12 +11,18 @@
   pacman: name=ccache
   become: yes
 
+- name: Check if Aura is installed.
+  command: pacman -Qs aura
+  register: aura_installed
+  ignore_errors: yes
+
 - name: Download and extract aura
   unarchive: src="https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz"
-             dest="/home/alexandre"
+             dest=/home/{{ user.name }}
              copy=no
   become: yes
-  become_user: alexandre
+  become_user: "{{ user.name }}"
+  when: aura_installed|failed
 
 - name: Install aura dependencies
   pacman: name=abs
@@ -25,12 +31,14 @@
 - name: Prepare aura installation
   command: makepkg --noconfirm
   args:
-    chdir: /home/alexandre/aura-bin
+    chdir: /home/{{ user.name }}/aura-bin
   become: yes
-  become_user: alexandre
+  become_user: "{{ user.name }}" 
+  when: aura_installed|failed
 
 - name: Install aura
-  command: pacman -U aura-bin-1.3.6-1-x86_64.pkg.tar.xz --noconfirm
+  command: pacman -U aura-bin-1.3.7-1-x86_64.pkg.tar.xz --noconfirm
   args:
-    chdir: /home/alexandre/aura-bin
+    chdir: /home/{{ user.name }}/aura-bin
   become: yes
+  when: aura_installed|failed
