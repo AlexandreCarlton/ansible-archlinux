@@ -24,6 +24,8 @@
     - lemonbar
   become: yes
 
+# TODO: Make PKGBUILD for lightstatus
+
 - name: Install lighstatus dependencies
   pacman: name={{ item }}
   with_items:
@@ -34,15 +36,15 @@
 
 - name: Download lightstatus
   git: repo=https://github.com/AlexandreCarlton/lightstatus.git
-       dest=/home/alexandre/Code/lightstatus
+       dest=/home/{{ user.name }}/Code/lightstatus
   become: yes
-  become_user: alexandre
+  become_user: "{{ user.name }}"
 
 - name: Make lightstatus
-  make: chdir=/home/alexandre/Code/lightstatus
+  make: chdir=/home/{{ user.name }}/Code/lightstatus
   become: yes
-  become_user: alexandre
+  become_user: "{{ user.name }}" 
 
 - name: Install lightstatus
-  make: chdir=/home/alexandre/Code/lightstatus target=install
+  make: chdir=/home/{{ user.name }}/Code/lightstatus target=install
   become: yes

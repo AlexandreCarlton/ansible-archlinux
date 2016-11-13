@@ -1,13 +1,15 @@
 ---
 
 - name: Install GTK themes
-  pacman: name=numix-themes
+  pacman: name={{ item }}
+  with_items:
+    - numix-themes
+    - arc-gtk-theme
   become: yes
 
 - name: Install GTK themes (AUR)
   command: aura -A --delmakedeps --noconfirm {{ item }}
   with_items:
-    - gtk-theme-arc-git
     - gtk-theme-numix-solarized
     - paper-gtk-theme-git
     - paper-icon-theme-git
