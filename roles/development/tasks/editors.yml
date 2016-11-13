@@ -11,6 +11,9 @@
   pacman: name={{ item }}
   with_items:
     - ctags
+    - cscope
+    - python-neovim
+    - python2-neovim
   become: yes
 
 - name: Install EditorConfig (AUR)
