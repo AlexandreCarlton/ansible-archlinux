@@ -21,4 +21,15 @@
   hostname: name={{ system.hostname }}
   become: yes
 
+- name: Set timezone to {{ system.timezone }}
+  timezone:
+    name: "{{ system.timezone }}"
+  become: yes
+
+- name: Set locale to {{ system.locale }}
+  locale_gen:
+    name: "{{ system.locale }}"
+    state: present
+  become: yes
+
 - include: dash.yml
