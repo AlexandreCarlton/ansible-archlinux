@@ -3,18 +3,23 @@
 # Install and deploy dotfiles
 
 - name: Install git to download dotfiles
-  package: name=git state=latest
+  package:
+    name: git
+    state: latest
   become: yes
 
 - name: Install stow to bootstrap dotfiles
-  package: name=stow state=latest
+  package:
+    name: stow
+    state: latest
   become: yes
 
 - name: Clone or update dotfiles repository
-  git: repo={{ dotfiles.repository }} 
-       dest="/home/{{ user.name }}/.dotfiles"
-       depth=1
-       recursive=yes
+  git:
+    repo: "{{ dotfiles.repository }}" 
+    dest: /home/{{ user.name }}/.dotfiles
+    depth: 1
+    recursive: yes
   become: yes
   become_user: "{{ user.name }}"
 
