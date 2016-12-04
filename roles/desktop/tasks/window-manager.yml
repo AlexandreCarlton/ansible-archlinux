@@ -21,7 +21,7 @@
 - name: Install window manager utilities (AUR)
   command: aura -A --delmakedeps --noconfirm {{ item }}
   with_items:
-    - lemonbar
+    - lemonbar-git
   become: yes
 
 # TODO: Make PKGBUILD for lightstatus
