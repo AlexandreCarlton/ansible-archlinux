@@ -1,7 +1,8 @@
 ---
 
 - name: Install JavaScript tools
-  pacman: name={{ item }}
+  pacman:
+    name: "{{ item }}"
   with_items:
     - npm
     - typescript

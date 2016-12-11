@@ -1,7 +1,8 @@
 ---
 
 - name: install C/C++ compiler tools
-  pacman: name={{ item }}
+  pacman:
+    name: "{{ item }}"
   with_items:
     - clang
     - clang-tools-extra
@@ -15,7 +16,8 @@
   become: yes
 
 - name: Install C/C++ libraries
-  pacman: name={{ item }}
+  pacman:
+    name: "{{ item }}"
   with_items:
     - boost
     - boost-libs

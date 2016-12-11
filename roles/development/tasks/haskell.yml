@@ -1,7 +1,8 @@
 ---
 
 - name: Install haskell tools
-  pacman: name={{ item }}
+  pacman:
+    name: "{{ item }}"
   with_items:
     - ghc
     - haskell-ghc-mod

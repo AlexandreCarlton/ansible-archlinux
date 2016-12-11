@@ -3,7 +3,8 @@
 # TODO: use with_items: python, python2 to install {{ item }}-pip or something
 
 - name: Install Python 3 utilities
-  pacman: name={{ item }}
+  pacman:
+    name: "{{ item }}"
   with_items:
     - python
     - pypy3
@@ -13,7 +14,8 @@
   become: yes
 
 - name: Install Python 2 utilities
-  pacman: name={{ item }}
+  pacman:
+    name: "{{ item }}"
   with_items:
     - python2
     - pypy

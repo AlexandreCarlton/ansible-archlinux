@@ -8,7 +8,8 @@
 - include: terminal.yml
 
 - name: Create "Code" folder
-  file: path=/home/{{ user.name }}/Code
-        state=directory
+  file:
+    path: /home/{{ user.name }}/Code
+    state: directory
   become: yes
   become_user: "{{ user.name }}"

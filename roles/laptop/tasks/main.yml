@@ -4,11 +4,13 @@
 # Will need to adjust based on laptop model.
 
 - name: Install connection manager
-  pacman: name=connman
+  pacman:
+    name: connman
   become: yes
 
 - name: Install battery / thermal reader
-  pacman: name=acpi
+  pacman:
+    name: acpi
   become: yes
 
 - name: Install thermald (AUR)

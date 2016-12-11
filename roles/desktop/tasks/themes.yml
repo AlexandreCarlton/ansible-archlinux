@@ -1,7 +1,8 @@
 ---
 
 - name: Install GTK themes
-  pacman: name={{ item }}
+  pacman:
+    name: "{{ item }}"
   with_items:
     - numix-themes
     - arc-gtk-theme

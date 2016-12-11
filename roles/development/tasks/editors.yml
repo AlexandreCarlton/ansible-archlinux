@@ -1,6 +1,7 @@
 ---
 - name: Install main editors
-  pacman: name={{ item }}
+  pacman:
+    name: "{{ item }}"
   with_items:
     - gvim
     - neovim
@@ -8,7 +9,8 @@
   become: yes
 
 - name: Install editor complements
-  pacman: name={{ item }}
+  pacman:
+    name: "{{ item }}"
   with_items:
     - ctags
     - cscope

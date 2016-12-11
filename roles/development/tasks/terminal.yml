@@ -19,7 +19,8 @@
 
 # TODO: split this up
 - name: Install shell utilities
-  pacman: name={{ item }}
+  pacman:
+    name: "{{ item }}"
   with_items:
     - tmux
     - thefuck

@@ -1,9 +1,10 @@
 ---
 
-# TODO: Set up 
+# TODO: Set up
 
 - name: Install web browser
-  pacman: name=chromium
+  pacman:
+    name: chromium
   become: yes
 
 - name: Install profile-sync-daemon (AUR)

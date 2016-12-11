@@ -8,7 +8,8 @@
 # Then we could shift this into 'system'
 
 - name: Install ccache for makepkg
-  pacman: name=ccache
+  pacman:
+    name: ccache
   become: yes
 
 - name: Check if Aura is installed.
@@ -17,15 +18,17 @@
   ignore_errors: yes
 
 - name: Download and extract aura
-  unarchive: src="https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz"
-             dest=/home/{{ user.name }}
-             copy=no
+  unarchive:
+    src: "https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz"
+    dest: /home/{{ user.name }}
+    copy: no
   become: yes
   become_user: "{{ user.name }}"
   when: aura_installed|failed
 
 - name: Install aura dependencies
-  pacman: name=abs
+  pacman:
+    name: abs
   become: yes
 
 - name: Prepare aura installation
@@ -33,7 +36,7 @@
   args:
     chdir: /home/{{ user.name }}/aura-bin
   become: yes
-  become_user: "{{ user.name }}" 
+  become_user: "{{ user.name }}"
   when: aura_installed|failed
 
 - name: Install aura

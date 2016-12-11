@@ -10,6 +10,6 @@
   file:
     path: /bin/sh
     src: dash
-    state: link 
+    state: link
     force: yes
   become: yes

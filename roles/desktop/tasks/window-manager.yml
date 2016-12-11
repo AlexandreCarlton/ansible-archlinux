@@ -1,14 +1,16 @@
 ---
 
 - name: Install window manager
-  pacman: name={{ item }}
+  pacman:
+    name: "{{ item }}"
   with_items:
     - bspwm
     - sxhkd
   become: yes
 
 - name: Install window manager utilities
-  pacman: name={{ item }}
+  pacman:
+    name: "{{ item }}"
   with_items:
     - rofi
     - i3lock
@@ -29,7 +31,8 @@
 # TODO: Make PKGBUILD for lightstatus
 
 - name: Install lighstatus dependencies
-  pacman: name={{ item }}
+  pacman:
+    name: "{{ item }}"
   with_items:
     - alsa-lib
     - libevdev
@@ -45,7 +48,7 @@
 - name: Make lightstatus
   make: chdir=/home/{{ user.name }}/Code/lightstatus
   become: yes
-  become_user: "{{ user.name }}" 
+  become_user: "{{ user.name }}"
 
 - name: Install lightstatus
   make: chdir=/home/{{ user.name }}/Code/lightstatus target=install

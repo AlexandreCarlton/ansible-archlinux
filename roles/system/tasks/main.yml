@@ -11,7 +11,7 @@
 
 - name: Give wheel group sudo (with password) privileges
   lineinfile:
-    dest: /etc/sudoers  
+    dest: /etc/sudoers
     line: "%wheel ALL=(ALL) ALL"
     state: present
     validate: 'visudo -cf %s'

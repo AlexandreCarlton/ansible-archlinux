@@ -16,7 +16,7 @@
 
 - name: Clone or update dotfiles repository
   git:
-    repo: "{{ dotfiles.repository }}" 
+    repo: "{{ dotfiles.repository }}"
     dest: /home/{{ user.name }}/.dotfiles
     depth: 1
     recursive: yes
