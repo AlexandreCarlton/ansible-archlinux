@@ -33,3 +33,11 @@
   become: yes
 
 - include: dash.yml
+
+- name: Install linux-zen kernel
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - linux-zen
+    - linux-zen-headers
+  become: yes
