@@ -12,7 +12,9 @@
   become: yes
 
 - name: Install fonts (AUR)
-  command: aura -A --delmakedeps --noconfirm {{ item }}
+  aura:
+    name: "{{ item }}"
+    delmakedeps: yes
   with_items:
     - gohufont
     - ttf-font-awesome

@@ -19,7 +19,9 @@
   become: yes
 
 - name: Install window manager utilities (AUR)
-  command: aura -A --delmakedeps --noconfirm {{ item }}
+  aura:
+    name: "{{ item }}"
+    delmakedeps: yes
   with_items:
     - lemonbar-git
   become: yes

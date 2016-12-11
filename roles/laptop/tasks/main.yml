@@ -12,7 +12,9 @@
   become: yes
 
 - name: Install thermald (AUR)
-  command: aura -A --delmakedeps --noconfirm thermald-git
+  aura:
+    name: thermald-git
+    delmakedeps: yes
   become: yes
 
 - name: Enable thermald
@@ -22,7 +24,9 @@
   become: yes
 
 - name: Install automounter (AUR)
-  command: aura -A --delmakedeps --noconfirm ldm
+  aura:
+    name: ldm
+    delmakedeps: yes
   become: yes
 
 - name: Enable automounter

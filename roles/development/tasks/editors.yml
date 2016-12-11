@@ -16,6 +16,10 @@
     - python2-neovim
   become: yes
 
-- name: Install EditorConfig (AUR)
-  command: aura -A --delmakedeps --noconfirm editorconfig-core-c
+- name: Install editor complements (AUR)
+  aura:
+    name: "{{ item }}"
+    delmakedeps: yes
+  with_items:
+    - editorconfig-core-c
   become: yes

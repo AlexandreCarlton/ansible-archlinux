@@ -8,7 +8,9 @@
   become: yes
 
 - name: Install GTK themes (AUR)
-  command: aura -A --delmakedeps --noconfirm {{ item }}
+  aura:
+    name: "{{ item }}"
+    delmakedeps: yes
   with_items:
     - gtk-theme-numix-solarized
     - paper-gtk-theme-git

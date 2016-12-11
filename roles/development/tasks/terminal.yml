@@ -35,7 +35,9 @@
   become: yes
 
 - name: Install shell utilities (AUR)
-  command: aura -A --delmakedeps --noconfirm {{ item }}
+  aura:
+    name: "{{ item }}"
+    delmakedeps: yes
   with_items:
     - fasd
   become: yes

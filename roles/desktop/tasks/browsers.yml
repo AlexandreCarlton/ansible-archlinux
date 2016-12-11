@@ -7,7 +7,9 @@
   become: yes
 
 - name: Install profile-sync-daemon (AUR)
-  command: aura -A --delmakedeps --noconfirm profile-sync-daemon
+  aura:
+    name: profile-sync-daemon
+    delmakedeps: yes
   become: yes
 
 - name: Use psd-overlay-helper
