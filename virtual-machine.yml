@@ -6,3 +6,6 @@
     - development
     - desktop
     - vagrant
+  vars:
+    mkinitcpio:
+      modules: ""

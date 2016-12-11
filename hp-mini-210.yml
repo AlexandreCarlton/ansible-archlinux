@@ -6,3 +6,6 @@
     - development
     - desktop
     - laptop
+  vars:
+    mkinitcpio:
+      modules: i915

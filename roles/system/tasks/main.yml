@@ -41,3 +41,11 @@
     - linux-zen
     - linux-zen-headers
   become: yes
+
+- name: Install mkinitcpio configuration
+  template:
+    src: etc/mkinitcpio.conf.j2
+    dest: /etc/mkinitcpio.conf
+  notify:
+    - Create initial ramdisk environment
+  become: yes

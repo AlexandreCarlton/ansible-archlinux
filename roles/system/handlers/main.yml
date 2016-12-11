@@ -1,0 +1,5 @@
+---
+
+- name: Create initial ramdisk environment
+  command: mkinitcpio --preset linux
+  become: yes
