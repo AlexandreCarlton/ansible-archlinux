@@ -1,0 +1,3 @@
+[submodule "library/aura"]
+	path = library/aura
+	url = https://github.com/AlexandreCarlton/ansible-aura.git
