@@ -27,19 +27,25 @@
     - seamless
   become: yes
 
-# Can't seem to enable these services because there is no running systemd instance for {{ user.name }}
-# What if we just manually created the links in $HOME/.config/systemd/user?
-# - name: Enable VBoxClient services
-#   systemd:
-#     name: vboxclient-{{ item }}
-#     enabled: yes
-#     user: yes
-#     daemon_reload: yes
-#   with_items:
-#     - checkhostversion
-#     - clipboard
-#     - display
-#     - draganddrop
-#     - seamless
-#   become: yes
-#   become_user: "{{ user.name }}"
+# We can't directly enable these services because there is no running systemd instance for {{ user.name }}
+
+- name: Create default.target.wants
+  file:
+    name: /home/{{ user.name }}/.config/systemd/user/default.target.wants
+    state: directory
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: Enable VBoxClient services
+  file:
+    src: /etc/systemd/user/vboxclient-{{ item }}.service
+    dest: /home/{{ user.name }}/.config/systemd/user/default.target.wants/vboxclient-{{ item }}.service
+    state: link
+  with_items:
+    - checkhostversion
+    - clipboard
+    - display
+    - draganddrop
+    - seamless
+  become: yes
+  become_user: "{{ user.name }}"
