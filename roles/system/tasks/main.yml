@@ -49,3 +49,5 @@
   notify:
     - Create initial ramdisk environment
   become: yes
+
+- include: aura.yml

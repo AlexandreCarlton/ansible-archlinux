@@ -1,9 +1,3 @@
 ---
-# TODO: Rename this to admin or user?
-# We install zsh here, makes things a bit icky.
-
-# Basic user creation, dotfiles setup, etc.
-
 - include: user.yml
 - include: dotfiles.yml
-- include: aura.yml
