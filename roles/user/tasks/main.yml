@@ -1,3 +1,12 @@
 ---
 - include: user.yml
+
 - include: dotfiles.yml
+- include: vim.yml
+
+- name: Create "Code" folder
+  file:
+    path: /home/{{ user.name }}/Code
+    state: directory
+  become: yes
+  become_user: "{{ user.name }}"
