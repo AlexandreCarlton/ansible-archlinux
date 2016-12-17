@@ -14,12 +14,13 @@
     state: latest
   become: yes
 
-- name: Clone or update dotfiles repository
+- name: Clone dotfiles repository
   git:
     repo: "{{ dotfiles.repository }}"
     dest: /home/{{ user.name }}/.dotfiles
     depth: 1
     recursive: yes
+    update: no # We tend to tinker with dotfiles a bit.
   become: yes
   become_user: "{{ user.name }}"
 
