@@ -40,16 +40,20 @@
   become: yes
 
 - name: Download lightstatus
-  git: repo=https://github.com/AlexandreCarlton/lightstatus.git
-       dest=/home/{{ user.name }}/Code/lightstatus
+  git:
+    repo: "https://github.com/AlexandreCarlton/lightstatus.git"
+    dest: /tmp/lightstatus
   become: yes
-  become_user: "{{ user.name }}"
+  become_user: nobody
 
 - name: Make lightstatus
-  make: chdir=/home/{{ user.name }}/Code/lightstatus
+  make:
+    chdir: /tmp/lightstatus
   become: yes
-  become_user: "{{ user.name }}"
+  become_user: nobody
 
 - name: Install lightstatus
-  make: chdir=/home/{{ user.name }}/Code/lightstatus target=install
+  make:
+    chdir: /tmp/lightstatus
+    target: install
   become: yes
