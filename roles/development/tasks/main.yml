@@ -6,6 +6,7 @@
 - include: javascript.yml
 - include: python.yml
 - include: terminal.yml
+- include: vim.yml
 
 - name: Create "Code" folder
   file:
