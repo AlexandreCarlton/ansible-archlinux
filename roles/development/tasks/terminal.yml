@@ -28,6 +28,7 @@
     - htop
     - diff-so-fancy
     - the_silver_searcher
+    - ripgrep
     - wget
     - ranger
     - pass
@@ -40,5 +41,5 @@
     name: "{{ item }}"
     delmakedeps: yes
   with_items:
-    - fasd
+    - fasd-git
   become: yes
