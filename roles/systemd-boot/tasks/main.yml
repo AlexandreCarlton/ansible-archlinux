@@ -1,0 +1,12 @@
+---
+
+- name: Copy in loader.conf
+  copy:
+    src: loader.conf
+    dest: /boot/loader/loader.conf
+
+- name: Copy in Arch Linux entry
+  template:
+    src: arch.conf.j2
+    dest: /boot/loader/entries/arch.conf
+
