@@ -50,7 +50,10 @@ FILES=""
 ##   NOTE: If you have /usr on a separate partition, you MUST include the
 #    usr, fsck and shutdown hooks.
 
-HOOKS="systemd autodetect modconf block filesystems keyboard fsck"
+# If using systemd hooks:
+#  - replace 'base udev' with 'systemd'
+#  - replace 'encrypt' with 'sd-encrypt'
+HOOKS="base udev autodetect modconf keyboard block encrypt filesystems fsck"
 
 # COMPRESSION
 # Use this to compress the initramfs image. By default, gzip compression
