@@ -8,9 +8,9 @@
     name: rfkill
   become: yes
 
-- name: Automatically unblock wlan on boot
-  systemd:
-    name: rfkill-unblock@wlan.service
-    enabled: yes
-    daemon_reload: yes
-  become: yes
+# - name: Automatically unblock wlan on boot
+#   systemd:
+#     name: rfkill-unblock@wlan.service
+#     enabled: yes
+#     daemon_reload: yes
+#   become: yes
