@@ -5,8 +5,20 @@
 #   pacman: name=steam
 #   become: yes
 
-- name: Install retroarch with cores
-  pacman: name=libretro
+- name: Install retroarch
+  pacman:
+    name: retroarch
+  become: yes
+
+- name: Install retroarch cores
+  pacman:
+    name: libretro-{{ item }}
+  with_items:
+    - desmume # Nintendo DS
+    - gambatte # GameBoy (Color)
+    - genesis-plus # Sega MegaDrive
+    - mgba # GameBoy Advance
+    - mupen64plus # Nintendo 64
   become: yes
 
 - name: Install video player
