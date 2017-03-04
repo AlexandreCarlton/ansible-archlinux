@@ -4,7 +4,9 @@
   pacman:
     name: "{{ item }}"
   with_items:
-    - numix-themes
+    - gtk-engine-murrine
+    - gtk-engines
+    - numix-gtk-theme
     - arc-gtk-theme
   become: yes
 
