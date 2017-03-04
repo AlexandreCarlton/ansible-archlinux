@@ -5,7 +5,22 @@
 
 - name: Install connection manager
   pacman:
+    name: "{{ item }}"
+  with_items:
+    - connman
+    - wpa_supplicant
+  become: yes
+
+- name: Copy in connman configuration
+  copy:
+    src: etc/connman/main.conf
+    dest: /etc/connman/main.conf
+  become: yes
+
+- name: Enable connman
+  systemd:
     name: connman
+    enabled: yes
   become: yes
 
 - name: Install battery / thermal reader
