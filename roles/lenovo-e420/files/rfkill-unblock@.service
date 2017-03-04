@@ -1,0 +1,13 @@
+[Unit]
+Description=Unblock %i
+Documentation=man:rfkill(8)
+Requires=systemd-rfkill.socket
+After=systemd-rfkill.socket
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/rfkill unblock %i
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
