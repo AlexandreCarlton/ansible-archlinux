@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  become: yes
+  roles:
+    - system
+    - development
+    - desktop
+    - user
+    - laptop
+    - systemd-boot
+    - thinkpad
+  vars:
+    mkinitcpio:
+      modules: radeon
