@@ -41,7 +41,7 @@
   when: aura_installed|failed
 
 - name: Install aura
-  command: pacman -U aura-bin-1.3.7-1-x86_64.pkg.tar.xz --noconfirm
+  command: pacman -U aura-bin-1.3.8-1-x86_64.pkg.tar.xz --noconfirm
   args:
     chdir: /tmp/aura-bin
   become: yes
