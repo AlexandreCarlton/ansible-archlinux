@@ -68,4 +68,9 @@
     dest: /etc/systemd/system/getty@tty1.service.d/autologin.conf
   become: yes
 
+- name: Install sound utilities
+  pacman:
+    name: alsa-utils
+  become: yes
+
 - include: aura.yml
