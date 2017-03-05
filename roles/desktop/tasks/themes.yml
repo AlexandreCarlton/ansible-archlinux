@@ -19,4 +19,5 @@
     - paper-gtk-theme-git
     - paper-icon-theme-git
     - numix-icon-theme-git
+    - gtk-theme-solarc-git
   become: yes
