@@ -57,3 +57,16 @@
     src: ldm.conf.j2
     dest: /etc/ldm.conf
   become: yes
+
+- name: Install crda to use correct Wireless Regulatory Domain
+  pacman:
+    name: crda
+  become: yes
+
+- name: Set WRD to Australia
+  lineinfile:
+    path: /etc/conf.d/wireless-regdom
+    state: present
+    regexp: '#WIRELESS_REGDOM="AU"'
+    line: 'WIRELESS_REGDOM="AU"'
+  become: yes
