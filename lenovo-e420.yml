@@ -12,4 +12,6 @@
     - radeon
   vars:
     mkinitcpio:
-      modules: radeon
+      modules:
+        - radeon
+        - thinkpad_acpi
