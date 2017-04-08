@@ -1,0 +1,38 @@
+---
+
+- name: Install Docker
+  pacman:
+    name: docker
+    state: present
+
+- name: Create Docker userns-remap files
+  file:
+    path: '{{ item }}'
+    state: touch
+  with_items:
+    - /etc/subuid
+    - /etc/subgid
+
+- name: Create Sub UID/GID mappings
+  lineinfile:
+    dest: '{{ item }}'
+    line: '{{ user.name }}:100000:65536'
+  with_items:
+    - /etc/subuid
+    - /etc/subgid
+
+- name: Create Docker service override folder
+  file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+
+- name: Place in Docker override for username remapping
+  template:
+    src: userns_remap.conf.j2
+    dest: /etc/systemd/system/docker.service.d/userns_remap.conf
+
+- name: Enable Docker on startup
+  systemd:
+    name: docker
+    enabled: yes
+    daemon_reload: yes

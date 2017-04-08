@@ -5,6 +5,7 @@
     - system
     - development
     - desktop
+    - docker
     - user
     - laptop
     - systemd-boot
