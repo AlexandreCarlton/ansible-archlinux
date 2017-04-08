@@ -73,6 +73,6 @@
   lineinfile:
     dest: /etc/conf.d/wireless-regdom
     state: present
-    regexp: '#WIRELESS_REGDOM="AU"'
+    regexp: '^#?WIRELESS_REGDOM="AU"'
     line: 'WIRELESS_REGDOM="AU"'
   become: yes
