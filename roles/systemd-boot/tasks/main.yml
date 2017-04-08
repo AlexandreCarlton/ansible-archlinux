@@ -1,5 +1,10 @@
 ---
 
+# TODO: Make this a separate role, adjusts the systemd-boot entry as well.
+- name: Install intel microcode updates
+  pacman:
+    name: intel-ucode
+
 - name: Copy in loader.conf
   copy:
     src: loader.conf
@@ -10,3 +15,10 @@
     src: arch.conf.j2
     dest: /boot/loader/entries/arch.conf
 
+
+- name: Copy in Arch Linux variant entries
+  template:
+    src: arch-variant.conf.j2
+    dest: /boot/loader/entries/arch-{{ item }}.conf
+  with_items:
+    - zen
