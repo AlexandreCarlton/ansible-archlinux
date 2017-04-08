@@ -5,6 +5,7 @@
     name: "{{ user.name }}"
     groups: wheel
     password: "{{ user.password }}"
+    update_password: on_create
     createhome: yes
   become: yes
 
