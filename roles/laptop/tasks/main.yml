@@ -11,6 +11,12 @@
     - wpa_supplicant
   become: yes
 
+- name: Create connman configuration folder
+  file:
+    path: /etc/connman
+    state: directory
+  become: yes
+
 - name: Copy in connman configuration
   copy:
     src: etc/connman/main.conf
@@ -65,7 +71,7 @@
 
 - name: Set WRD to Australia
   lineinfile:
-    path: /etc/conf.d/wireless-regdom
+    dest: /etc/conf.d/wireless-regdom
     state: present
     regexp: '#WIRELESS_REGDOM="AU"'
     line: 'WIRELESS_REGDOM="AU"'
