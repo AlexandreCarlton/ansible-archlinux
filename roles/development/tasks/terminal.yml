@@ -34,6 +34,9 @@
     - pass
     - git
     - fzf
+    - aspell
+    - aspell-en
+    - shellcheck
   become: yes
 
 - name: Install shell utilities (AUR)
