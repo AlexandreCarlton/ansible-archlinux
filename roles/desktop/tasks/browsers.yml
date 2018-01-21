@@ -2,9 +2,14 @@
 
 # TODO: Set up
 
-- name: Install web browser
+- name: Install Chromium web browser
   pacman:
     name: chromium
+  become: yes
+
+- name: Install Chromium extensions
+  aura:
+    name: chromium-widevine # For Netflix
   become: yes
 
 - name: Install profile-sync-daemon (AUR)
