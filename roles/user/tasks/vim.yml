@@ -38,6 +38,7 @@
     recursive: yes
     depth: 1
     update: no
+    version: master
   with_items:
     - { plugin: 'ansible-vim',                author: 'pearofducks' }
     - { plugin: 'csv.vim',                    author: 'chrisbra' }

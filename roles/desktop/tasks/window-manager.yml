@@ -43,6 +43,7 @@
   git:
     repo: "https://github.com/AlexandreCarlton/lightstatus.git"
     dest: /tmp/lightstatus
+    version: master
   become: yes
   become_user: nobody
 

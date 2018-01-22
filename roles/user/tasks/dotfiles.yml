@@ -19,6 +19,7 @@
     depth: 1
     recursive: yes
     update: no # We tend to tinker with dotfiles a bit.
+    version: master
   become: yes
   become_user: "{{ user.name }}"
 
