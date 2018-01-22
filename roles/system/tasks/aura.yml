@@ -14,9 +14,13 @@
   become: yes
 
 - name: Check if Aura is installed.
-  command: pacman -Qs aura
+  command: pacman -Qi aura
   register: aura_installed
   ignore_errors: yes
+  # We're only reading the state of the machine, so this never changes anything.
+  changed_when: False
+  # Have this run even when in check-mode as subsequent tasks depend on 'aura_installed' being set.
+  check_mode: no
 
 - name: Download and extract aura
   unarchive:

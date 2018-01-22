@@ -102,5 +102,6 @@
   command: ./install.py --clang-completer --system-libclang
   args:
     chdir: /home/{{ user.name }}/.config/nvim/plugged/YouCompleteMe
+    creates: /home/{{ user.name }}/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so
   become: yes
   become_user: "{{ user.name }}"
