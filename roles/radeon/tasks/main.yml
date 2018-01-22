@@ -5,4 +5,11 @@
     name: xf86-video-ati
   become: yes
 
-# TODO: Use lineinfile to append "radeon" to mkinitcpio.conf
+- name: Add 'radeon' module to /etc/mkinitcpio.conf
+  lineinfile:
+    dest: /etc/mkinitcpio.conf
+    backrefs: yes
+    regexp: '^MODULES="(((?!radeon).)*)"$'
+    line: 'MODULES="\1 radeon"'
+  notify:
+    - Create initial ramdisk environment
