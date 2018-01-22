@@ -5,13 +5,11 @@
 - name: Install git to download dotfiles
   package:
     name: git
-    state: latest
   become: yes
 
 - name: Install stow to bootstrap dotfiles
   package:
     name: stow
-    state: latest
   become: yes
 
 - name: Clone dotfiles repository
