@@ -96,6 +96,15 @@
   become: yes
   become_user: "{{ user.name }}"
 
+- name: Install YouCompleteMe build dependencies
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - cmake
+    - clang
+    - python
+  become: yes
+
 # TODO: Because YCM is a behemoth, we should install YCM separately (forcing git update)
 # And if there is a change, we trigger the compilation through a handler.
 - name: Compile YouCompleteMe
