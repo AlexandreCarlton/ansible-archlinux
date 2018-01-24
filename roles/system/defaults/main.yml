@@ -1,0 +1,4 @@
+# Generally we will override the hostname. I use pokemon names :)
+system_hostname: linux
+system_timezone: Australia/Sydney
+system_locale: en_US.UTF-8

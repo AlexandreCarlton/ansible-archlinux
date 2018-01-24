@@ -9,3 +9,4 @@
   vars:
     mkinitcpio:
       modules: ""
+    system_hostname: porygon

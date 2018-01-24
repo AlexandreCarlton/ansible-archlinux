@@ -16,3 +16,4 @@
       modules:
         - radeon
         - thinkpad_acpi
+    system_hostname: flygon

@@ -17,19 +17,19 @@
     validate: 'visudo -cf %s'
   become: yes
 
-- name: Set hostname to {{ system.hostname }}
-  hostname: name={{ system.hostname }}
+- name: Set hostname to {{ system_hostname }}
+  hostname:
+    name: "{{ system_hostname }}"
   become: yes
 
-- name: Set timezone to {{ system.timezone }}
+- name: Set timezone to {{ system_timezone }}
   timezone:
-    name: "{{ system.timezone }}"
+    name: "{{ system_timezone }}"
   become: yes
 
-- name: Set locale to {{ system.locale }}
+- name: Set locale to {{ system_locale }}
   locale_gen:
-    name: "{{ system.locale }}"
-    state: present
+    name: "{{ system_locale }}"
   become: yes
 
 - include: dash.yml
@@ -72,5 +72,3 @@
   pacman:
     name: alsa-utils
   become: yes
-
-- include: aura.yml
