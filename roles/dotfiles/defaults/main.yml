@@ -1,0 +1,3 @@
+
+dotfiles_repo: https://github.com/AlexandreCarlton/dotfiles.git
+dotfiles_install_cmd: make development desktop

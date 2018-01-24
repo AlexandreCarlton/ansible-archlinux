@@ -14,7 +14,7 @@
 
 - name: Clone dotfiles repository
   git:
-    repo: "{{ dotfiles.repository }}"
+    repo: "{{ dotfiles_repo }}"
     dest: /home/{{ user.name }}/.dotfiles
     depth: 1
     recursive: yes
@@ -24,7 +24,7 @@
   become_user: "{{ user.name }}"
 
 - name: Install dotfiles
-  command: "{{ dotfiles.install }}"
+  command: "{{ dotfiles_install_cmd }}"
   args:
     chdir: /home/{{ user.name }}/.dotfiles
     # We just pick a file that we know will always be installed, and use that as our check.
