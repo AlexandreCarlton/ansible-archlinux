@@ -3,7 +3,6 @@
 - include: xorg.yml
 - include: fonts.yml
 - include: media.yml
-- include: browsers.yml
 - include: themes.yml
 - include: window-manager.yml
 
