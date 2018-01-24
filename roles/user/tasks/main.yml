@@ -21,8 +21,6 @@
     shell: /usr/bin/{{ user.shell }}
   become: yes
 
-- include: vim.yml
-
 - name: Create "Code" folder
   file:
     path: /home/{{ user.name }}/Code
