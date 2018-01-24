@@ -20,7 +20,7 @@
 
 - name: Force creation of Plugin folder
   file:
-    path: /home/{{ user.name }}/.config/nvim/plugged
+    path: "{{ vim_plugins_directory }}"
     state: directory
   become: yes
   become_user: "{{ user.name }}"
@@ -34,7 +34,7 @@
 - name: Install Vim plugins
   git:
     repo: "https://github.com/{{ item.author }}/{{ item.plugin }}.git"
-    dest: /home/{{ user.name }}/.config/nvim/plugged/{{ item.plugin }}
+    dest: "{{ vim_plugins_directory }}/{{ item.plugin }}"
     recursive: yes
     depth: 1
     update: no
@@ -110,7 +110,7 @@
 - name: Compile YouCompleteMe
   command: ./install.py --clang-completer --system-libclang
   args:
-    chdir: /home/{{ user.name }}/.config/nvim/plugged/YouCompleteMe
-    creates: /home/{{ user.name }}/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/ycm_core.so
+    chdir: "{{ vim_plugins_directory }}/YouCompleteMe"
+    creates: "{{ vim_plugins_directory }}/YouCompleteMe/third_party/ycmd/ycm_core.so"
   become: yes
   become_user: "{{ user.name }}"
