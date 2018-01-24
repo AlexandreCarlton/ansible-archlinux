@@ -1,0 +1,12 @@
+- name: Ensure folder for autologin override exists
+  file:
+    path: /etc/systemd/system/getty@tty1.service.d
+    state: directory
+  become: yes
+
+- name: Enable autologin for user '{{ user_name }}'
+  template:
+    src: autologin.conf.j2
+    dest: /etc/systemd/system/getty@tty1.service.d/autologin.conf
+  become: yes
+
