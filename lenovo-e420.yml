@@ -2,15 +2,20 @@
 - hosts: localhost
   become: yes
   roles:
-    - system
+    - aura
+    - autologin
+    - chromium
     - development
     - desktop
     - docker
-    - user
+    - dotfiles
     - laptop
+    - radeon
+    - system
     - systemd-boot
     - thinkpad
-    - radeon
+    - user
+    - vim_plugins
   vars:
     mkinitcpio:
       modules:
