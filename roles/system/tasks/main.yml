@@ -32,7 +32,19 @@
     name: "{{ system_locale }}"
   become: yes
 
-- include: dash.yml
+# Installing dash gives a slight speed up.
+- name: Install dash shell
+  pacman:
+    name: dash
+  become: yes
+
+- name: Set /bin/sh to point to dash
+  file:
+    path: /bin/sh
+    src: dash
+    state: link
+    force: yes
+  become: yes
 
 - name: Install linux-zen kernel
   pacman:
