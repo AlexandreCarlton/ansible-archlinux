@@ -11,9 +11,9 @@
     # Docker complains when it is not a system group
     system: yes
 
-- name: Add '{{ user.name }}' to the 'docker' group
+- name: Add '{{ user_name }}' to the 'docker' group
   user:
-    name: '{{ user.name }}'
+    name: '{{ user_name }}'
     groups:
       - docker
     append: yes

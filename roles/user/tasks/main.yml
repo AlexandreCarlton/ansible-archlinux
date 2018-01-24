@@ -1,29 +1,30 @@
 ---
 
-- name: Create user {{ user.name }} in wheel group
+- name: Create user {{ user_name }} in wheel group
   user:
-    name: "{{ user.name }}"
+    name: "{{ user_name }}"
     groups: wheel
-    password: "{{ user.password }}"
+    password: "{{ user_password }}"
     update_password: on_create
     createhome: yes
   become: yes
 
-- name: Install preferred shell for {{ user.name }}
+# Can be one of [bash, zsh, fish]
+- name: Install preferred shell for {{ user_name }}
   package:
-    name: "{{ user.shell }}"
+    name: "{{ user_shell }}"
     state: present
   become: yes
 
-- name: Set preferred shell for {{ user.name }}
+- name: Set preferred shell for {{ user_name }}
   user:
-    name: "{{ user.name }}"
-    shell: /usr/bin/{{ user.shell }}
+    name: "{{ user_name }}"
+    shell: /usr/bin/{{ user_shell }}
   become: yes
 
 - name: Create "Code" folder
   file:
-    path: /home/{{ user.name }}/Code
+    path: /home/{{ user_name }}/Code
     state: directory
   become: yes
-  become_user: "{{ user.name }}"
+  become_user: "{{ user_name }}"

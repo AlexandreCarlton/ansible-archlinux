@@ -27,19 +27,19 @@
     - seamless
   become: yes
 
-# We can't directly enable these services because there is no running systemd instance for {{ user.name }}
+# We can't directly enable these services because there is no running systemd instance for {{ user_name }}
 
 - name: Create default.target.wants
   file:
-    name: /home/{{ user.name }}/.config/systemd/user/default.target.wants
+    name: /home/{{ user_name }}/.config/systemd/user/default.target.wants
     state: directory
   become: yes
-  become_user: "{{ user.name }}"
+  become_user: "{{ user_name }}"
 
 - name: Enable VBoxClient services
   file:
     src: /etc/systemd/user/vboxclient-{{ item }}.service
-    dest: /home/{{ user.name }}/.config/systemd/user/default.target.wants/vboxclient-{{ item }}.service
+    dest: /home/{{ user_name }}/.config/systemd/user/default.target.wants/vboxclient-{{ item }}.service
     state: link
   with_items:
     - checkhostversion
@@ -48,4 +48,4 @@
     - draganddrop
     - seamless
   become: yes
-  become_user: "{{ user.name }}"
+  become_user: "{{ user_name }}"

@@ -6,24 +6,24 @@
 
 - name: Force creation of Vim-Plug folder
   file:
-    path: /home/{{ user.name }}/.config/nvim/autoload
+    path: /home/{{ user_name }}/.config/nvim/autoload
     state: directory
   become: yes
-  become_user: "{{ user.name }}"
+  become_user: "{{ user_name }}"
 
 - name: Install Vim-Plug
   get_url:
     url: "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-    dest: /home/{{ user.name }}/.config/nvim/autoload/plug.vim
+    dest: /home/{{ user_name }}/.config/nvim/autoload/plug.vim
   become: yes
-  become_user: "{{ user.name }}"
+  become_user: "{{ user_name }}"
 
 - name: Force creation of Plugin folder
   file:
     path: "{{ vim_plugins_directory }}"
     state: directory
   become: yes
-  become_user: "{{ user.name }}"
+  become_user: "{{ user_name }}"
 
 
 # To get all (used) plugins (using a temporary separator)
@@ -94,7 +94,7 @@
     - { plugin: 'YCM-Generator',              author: 'rdnetto' }
     - { plugin: 'YouCompleteMe',              author: 'Valloric' }
   become: yes
-  become_user: "{{ user.name }}"
+  become_user: "{{ user_name }}"
 
 - name: Install YouCompleteMe build dependencies
   pacman:
@@ -113,4 +113,4 @@
     chdir: "{{ vim_plugins_directory }}/YouCompleteMe"
     creates: "{{ vim_plugins_directory }}/YouCompleteMe/third_party/ycmd/ycm_core.so"
   become: yes
-  become_user: "{{ user.name }}"
+  become_user: "{{ user_name }}"

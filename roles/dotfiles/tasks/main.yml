@@ -15,19 +15,19 @@
 - name: Clone dotfiles repository
   git:
     repo: "{{ dotfiles_repo }}"
-    dest: /home/{{ user.name }}/.dotfiles
+    dest: /home/{{ user_name }}/.dotfiles
     depth: 1
     recursive: yes
     update: no # We tend to tinker with dotfiles a bit.
     version: master
   become: yes
-  become_user: "{{ user.name }}"
+  become_user: "{{ user_name }}"
 
 - name: Install dotfiles
   command: "{{ dotfiles_install_cmd }}"
   args:
-    chdir: /home/{{ user.name }}/.dotfiles
+    chdir: /home/{{ user_name }}/.dotfiles
     # We just pick a file that we know will always be installed, and use that as our check.
-    creates: /home/{{ user.name }}/.config/nvim/init.vim
+    creates: /home/{{ user_name }}/.config/nvim/init.vim
   become: yes
-  become_user: "{{ user.name }}"
+  become_user: "{{ user_name }}"

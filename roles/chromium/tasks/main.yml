@@ -19,6 +19,6 @@
 - name: Use psd-overlay-helper
   lineinfile:
     dest: /etc/sudoers
-    line: "{{ user.name }} ALL=NOPASSWD: /usr/bin/psd-overlay-helper"
+    line: "{{ user_name }} ALL=NOPASSWD: /usr/bin/psd-overlay-helper"
     validate: visudo -cf %s
   become: yes

@@ -1,1 +1,1 @@
-vim_plugins_directory: /home/{{ user.name }}/.config/nvim/plugged
+vim_plugins_directory: /home/{{ user_name }}/.config/nvim/plugged
