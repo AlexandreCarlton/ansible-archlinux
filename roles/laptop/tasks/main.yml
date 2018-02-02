@@ -34,10 +34,9 @@
     name: acpi
   become: yes
 
-- name: Install thermald (AUR)
-  aura:
-    name: thermald-git
-    delmakedeps: yes
+- name: Install thermald
+  pacman:
+    name: thermald
   become: yes
 
 - name: Enable thermald
