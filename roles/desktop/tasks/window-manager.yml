@@ -29,8 +29,14 @@
   become: yes
 
 # TODO: Make PKGBUILD for lightstatus
+- name: Install lightstatus build dependencies
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - gcc
+    - make
 
-- name: Install lighstatus dependencies
+- name: Install lighstatus runtime dependencies
   pacman:
     name: "{{ item }}"
   with_items:
