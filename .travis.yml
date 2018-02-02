@@ -6,5 +6,5 @@ install:
   - pip install ansible-lint
 
 script:
-  - ansible-lint lenovo-e420.yml
-  - ansible-lint virtual-machine.yml
+  - make lint
+  - make test
