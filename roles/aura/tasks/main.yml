@@ -9,7 +9,7 @@
     - fakeroot # So that we may enter the 'fakeroot' environment to build aura
 
 - name: Check if Aura is installed.
-  command: pacman -Qi aura
+  command: pacman -Qi aura-bin
   register: aura_installed
   ignore_errors: yes
   # We're only reading the state of the machine, so this never changes anything.
