@@ -6,9 +6,8 @@
     name: "{{ item }}"
   with_items:
     - xorg
-    - xorg-server
-    - xorg-server-utils
     - xorg-apps
+    - xorg-server
   become: yes
 
 # Had to manually rewrite this; could be a line-ending thing.
