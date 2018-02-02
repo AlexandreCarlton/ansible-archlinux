@@ -5,9 +5,9 @@
     name: "{{ item }}"
   with_items:
     - ghc
-    - haskell-ghc-mod
-    - haskell-hlint
-    - haskell-stack
+    # 8.2 is not yet ready
+    # - ghc-mod
+    - hlint
+    - stack
     - hasktags
     - hoogle
-  become: yes
