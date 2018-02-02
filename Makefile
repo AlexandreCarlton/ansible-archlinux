@@ -1,5 +1,5 @@
 
-PLAYBOOK := lenovo-e420.yml
+PLAYBOOK := docker.yml
 
 lint:
 	ansible-lint $(PLAYBOOK)

@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  become: yes
+  roles:
+    - aura
+    - autologin
+    - chromium
+    - development
+    - desktop
+    - docker
+    - dotfiles
+    - system
+    - user
+    - vim_plugins
+  vars:
+    system_hostname: docker
