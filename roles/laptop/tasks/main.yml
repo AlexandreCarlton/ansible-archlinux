@@ -52,8 +52,9 @@
   become: yes
 
 - name: Enable automounter
-  service:
+  systemd:
     name: ldm
+    daemon_reload: yes
     enabled: yes
   become: yes
 
