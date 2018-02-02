@@ -1,17 +1,12 @@
 ---
 
-# Install AUR helper
-# Hopefully ansible will support this out of the box.
-# I mean, this will fall over at the slightest breeze.
-
-# Execute non-user things as 'nobody' or as ansible_ssh_user
-# Then we could shift this into 'system'
-# Or just create a temporary user and delete it after installing aura
-
-- name: Install ccache for makepkg
+- name: Install makepkg dependencies
   pacman:
-    name: ccache
-  become: yes
+    name: "{{ item }}"
+  with_items:
+    - binutils # for the 'strip' binary
+    - ccache
+    - fakeroot # So that we may enter the 'fakeroot' environment to build aura
 
 - name: Check if Aura is installed.
   command: pacman -Qi aura
@@ -22,6 +17,10 @@
   # Have this run even when in check-mode as subsequent tasks depend on 'aura_installed' being set.
   check_mode: no
 
+- name: Install sudo to change to 'nobody'
+  pacman:
+    name: sudo
+
 - name: Download and extract aura
   unarchive:
     src: "https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz"
@@ -30,11 +29,6 @@
   become: yes
   become_user: nobody
   when: aura_installed|failed
-
-- name: Install aura dependencies
-  pacman:
-    name: abs
-  become: yes
 
 - name: Prepare aura installation
   command: makepkg --noconfirm
@@ -45,7 +39,7 @@
   when: aura_installed|failed
 
 - name: Install aura
-  command: pacman -U aura-bin-1.3.8-1-x86_64.pkg.tar.xz --noconfirm
+  shell: pacman --upgrade aura-bin-*-x86_64.pkg.tar.xz --noconfirm
   args:
     chdir: /tmp/aura-bin
   become: yes
