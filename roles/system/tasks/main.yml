@@ -21,6 +21,9 @@
   hostname:
     name: "{{ system_hostname }}"
   become: yes
+  # hostnamectl doesn't work properly in a container (which is used for testing)
+  # See https://lists.freedesktop.org/archives/systemd-devel/2017-February/038291.html
+  when: ansible_env.container != 'docker'
 
 - name: Set timezone to {{ system_timezone }}
   timezone:
