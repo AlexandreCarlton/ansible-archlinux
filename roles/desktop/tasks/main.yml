@@ -1,7 +1,5 @@
 ---
 
-- include: xorg.yml
-
 - name: Install fonts
   pacman:
     name: "{{ item }}"
