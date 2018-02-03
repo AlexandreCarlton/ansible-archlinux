@@ -2,7 +2,25 @@
 
 - include: xorg.yml
 - include: fonts.yml
-- include: media.yml
+
+# Need 32-bit libraries :(
+# - name: Install steam
+#   pacman: name=steam
+#   become: yes
+
+- name: Install mpv video player
+  pacman:
+    name: mpv
+
+- name: Install zathura reader with extensions
+  pacman:
+    name: "{{ item }}"
+  with_items:
+   - zathura
+   - zathura-cb
+   - zathura-djvu
+   - zathura-pdf-mupdf
+   - zathura-ps
 
 - name: Install GTK themes
   pacman:
@@ -26,7 +44,7 @@
 
 - name: Install notifier
   pacman:
-    name: {{ item }}
+    name: "{{ item }}"
   with_items:
     - dunst
     - notification-daemon
