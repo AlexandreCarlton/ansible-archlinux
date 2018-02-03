@@ -58,8 +58,8 @@
   become: yes
 
 - name: Install mkinitcpio configuration
-  template:
-    src: mkinitcpio.conf.j2
+  copy:
+    src: mkinitcpio.conf
     dest: /etc/mkinitcpio.conf
   notify:
     - Create initial ramdisk environment
