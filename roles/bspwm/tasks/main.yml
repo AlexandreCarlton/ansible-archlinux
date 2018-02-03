@@ -29,7 +29,7 @@
   pacman:
     name: "{{ item }}"
   with_items:
-    - gcc
+    - clang
     - make
 
 - name: Install lighstatus runtime dependencies
