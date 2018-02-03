@@ -1,0 +1,9 @@
+---
+- name: Install retroarch
+  pacman:
+    name: retroarch
+
+- name: Install retroarch cores
+  pacman:
+    name: libretro-{{ item }}
+  with_items: "{{ retroarch_cores }}"

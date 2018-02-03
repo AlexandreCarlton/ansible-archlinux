@@ -1,0 +1,7 @@
+
+retroarch_cores:
+  - desmume # Nintendo DS
+  - gambatte # GameBoy (Color)
+  - genesis-plus-gx # Sega MegaDrive
+  - mgba # GameBoy Advance
+  - mupen64plus # Nintendo 64
