@@ -1,13 +1,5 @@
 ---
 
 - name: Create initial ramdisk environment
-  block:
-    - name: Install mkinicpio with dependencies
-      pacman:
-        name: "{{ item }}"
-      with_items:
-        - linux # for /etc/mkinitcpio.d/linux.preset
-        - mkinitcpio
-
-    - name: Run mkinitcpio with linux preset
-      command: mkinitcpio --preset linux
+  command: mkinitcpio --preset linux
+  become: yes
