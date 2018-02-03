@@ -3,3 +3,5 @@
 - name: Create initial ramdisk environment
   command: mkinitcpio --preset linux
   become: yes
+  # mkinitcpio tries to find the fsck.overlay which does not exist.
+  when: lookup('env', 'container') != 'docker'
