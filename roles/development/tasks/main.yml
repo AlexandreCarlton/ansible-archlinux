@@ -1,8 +1,127 @@
 ---
 
-- include: c-c++.yml
-- include: editors.yml
-- include: haskell.yml
-- include: javascript.yml
-- include: python.yml
-- include: terminal.yml
+- name: install C/C++ compiler tools
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - clang
+    - clang-tools-extra
+    - gcc
+    - cmake
+    - gdb
+    - valgrind
+    - ccache
+    - distcc
+    - valgrind
+
+- name: Install C/C++ libraries
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - boost
+    - boost-libs
+    - gtest
+
+- name: Install main editors
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - gvim
+    - neovim
+    - emacs
+
+- name: Install editor complements
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - ctags
+    - cscope
+    - editorconfig-core-c
+    - python-neovim
+    - python2-neovim
+
+- name: Install haskell tools
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - ghc
+    # 8.2 is not yet ready
+    # - ghc-mod
+    - hlint
+    - stack
+    - hasktags
+    - hoogle
+
+- name: Install JavaScript tools
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - npm
+    - typescript
+    - eslint
+  become: yes
+
+- name: Install Python 3 utilities
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - python
+    - pypy3
+    - python-pip
+    - python-pylint
+    - ipython
+  become: yes
+
+- name: Install Python 2 utilities
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - python2
+    - pypy
+    - python2-pip
+    - python2-pylint
+    - ipython2
+  become: yes
+
+- name: Install terminal emulators
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - rxvt-unicode
+    - xterm
+    - xclip
+
+- name: Install shells
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - zsh
+    - fish
+
+# TODO: split this up
+- name: Install shell utilities
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - tmux
+    - thefuck
+    - zsh
+    - htop
+    - diff-so-fancy
+    - the_silver_searcher
+    - ripgrep
+    - wget
+    - ranger
+    - pass
+    - git
+    - fzf
+    - aspell
+    - aspell-en
+    - shellcheck
+
+- name: Install shell utilities (AUR)
+  aura:
+    name: "{{ item }}"
+    delmakedeps: yes
+  with_items:
+    - fasd-git
