@@ -4,6 +4,7 @@
   roles:
     - aura
     - autologin
+    - bspwm
     - chromium
     - development
     - desktop

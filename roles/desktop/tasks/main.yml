@@ -4,7 +4,6 @@
 - include: fonts.yml
 - include: media.yml
 - include: themes.yml
-- include: window-manager.yml
 
 - name: Install notifier
   pacman: name={{ item }}

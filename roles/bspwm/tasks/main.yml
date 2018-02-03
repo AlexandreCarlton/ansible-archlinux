@@ -1,14 +1,12 @@
 ---
-
-- name: Install window manager
+- name: Install bspwm and sxhkd
   pacman:
     name: "{{ item }}"
   with_items:
     - bspwm
     - sxhkd
-  become: yes
 
-- name: Install window manager utilities
+- name: Install bspwm utilities
   pacman:
     name: "{{ item }}"
   with_items:
@@ -18,7 +16,6 @@
     - feh
     - scrot
     - graphicsmagick
-  become: yes
 
 - name: Install window manager utilities (AUR)
   aura:
@@ -26,7 +23,6 @@
     delmakedeps: yes
   with_items:
     - lemonbar-git
-  become: yes
 
 # TODO: Make PKGBUILD for lightstatus
 - name: Install lightstatus build dependencies
@@ -43,7 +39,6 @@
     - alsa-lib
     - libevdev
     - wireless_tools
-  become: yes
 
 - name: Download lightstatus
   git:
@@ -63,4 +58,3 @@
   make:
     chdir: /tmp/lightstatus
     target: install
-  become: yes
