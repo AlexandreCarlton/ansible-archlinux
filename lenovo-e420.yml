@@ -18,6 +18,7 @@
     - thinkpad
     - user
     - vim_plugins
+    - xorg
   vars:
     mkinitcpio:
       modules:

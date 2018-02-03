@@ -8,14 +8,12 @@
     - xorg
     - xorg-apps
     - xorg-server
-  become: yes
 
 # Had to manually rewrite this; could be a line-ending thing.
 - name: Allow Xorg to be used by anyone
   copy:
-    src: etc/X11/Xwrapper.config
+    src: Xwrapper.config
     dest: /etc/X11/Xwrapper.config
-  become: yes
 
 #- name: Allow Xorg to be used by anyone
 #  lineinfile: dest=/etc/X11/Xwrapper.config
@@ -24,11 +22,9 @@
 #  with_items:
 #    - "allowed_users=anybody"
 #    - "needs_root_rights=yes"
-#  become: yes
 
 - name: Set default display
   lineinfile:
     dest: /etc/systemd/user.conf
     state: present
     line: "DefaultEnvironment=DISPLAY=:0"
-  become: yes

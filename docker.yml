@@ -14,5 +14,6 @@
     - system
     - user
     - vim_plugins
+    - xorg
   vars:
     system_hostname: docker
