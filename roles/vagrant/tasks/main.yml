@@ -1,4 +1,59 @@
 ---
 
-- include: virtualbox.yml
-- include: vagrant.yml
+- name: Create group 'vagrant'
+  group:
+    name: vagrant
+    state: present
+  become: yes
+
+- name: Create user 'vagrant'
+  user:
+    name: vagrant
+    group: vagrant
+  become: yes
+
+- name: Set password of user 'vagrant' to 'vagrant'
+  user:
+    name: vagrant
+    password: "{{ vagrant.password }}"
+  become: yes
+
+- name: Set root password to 'vagrant'
+  user:
+    name: root
+    password: "{{ vagrant.password }}"
+  become: yes
+
+# TODO: See readme concerning SSH_AUTH_SOCKET
+- name: Enable password-less sudo for 'vagrant'
+  copy:
+    src: etc/sudoers.d/vagrant
+    dest: /etc/sudoers.d/vagrant
+    mode: 0440
+    validate: 'visudo -cf %s'
+  become: yes
+
+- name: Create vagrant .ssh folder with correct permissions.
+  file:
+    path: /home/vagrant/.ssh
+    state: directory
+    mode: 0700
+  become: yes
+  become_user: vagrant
+
+- name: Create vagrant authorized keys file.
+  get_url:
+    url: "{{ vagrant.public_key_url }}"
+    dest: /home/vagrant/.ssh/authorized_keys
+    mode: 0600
+  become: yes
+  become_user: vagrant
+
+
+# This can result in a speedup for Vagrant.
+# - name: Avoid DNS lookup on connecting SSH client
+#   lineinfile: dest=/etc/ssh/sshd_config
+#               regexp='^#?UseDNS.*$'
+#               line='UseDNS no'
+#               state=present
+#   become: yes

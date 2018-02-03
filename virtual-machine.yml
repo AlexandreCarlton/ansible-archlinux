@@ -6,7 +6,6 @@
     - desktop
     - user
     - vagrant
+    - virtualbox
   vars:
-    mkinitcpio:
-      modules: ""
     system_hostname: porygon
