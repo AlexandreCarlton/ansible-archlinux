@@ -7,3 +7,10 @@
   pacman:
     name: libretro-{{ item }}
   with_items: "{{ retroarch_cores }}"
+
+- name: Install retroarch utilities
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - retroarch-autoconfig-udev # automatically map joypad buttons when plugged in.
+    - retroarch-assets-xmb
