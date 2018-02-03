@@ -91,7 +91,6 @@
     - { plugin: 'vim-surround',               author: 'tpope' }
     - { plugin: 'vim-unimpaired',             author: 'tpope' }
     - { plugin: 'vim-vinegar',                author: 'tpope' }
-    - { plugin: 'YCM-Generator',              author: 'rdnetto' }
     - { plugin: 'YouCompleteMe',              author: 'Valloric' }
   become: yes
   become_user: "{{ user_name }}"
