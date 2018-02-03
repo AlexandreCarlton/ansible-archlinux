@@ -57,6 +57,13 @@
     - linux-zen-headers
   become: yes
 
+- name: Install mkinitcpio and presets
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - linux
+    - mkinitcpio
+
 - name: Install mkinitcpio configuration
   copy:
     src: mkinitcpio.conf
