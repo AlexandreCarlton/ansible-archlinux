@@ -1,0 +1,16 @@
+
+- name: Install Dropbox
+  aura:
+    name: dropbox
+
+- name: Clear out ~/.dropbox-dist contents
+  file:
+    path: /home/{{ user_name }}/.dropbox-dist
+    state: absent
+
+- name: Prevent dropbox from accessing ~/.dropbox-dist
+  file:
+    path: /home/{{ user_name }}/.dropbox-dist
+    state: directory
+    owner: "{{ user_name }}"
+    mode: 0000
