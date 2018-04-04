@@ -14,8 +14,7 @@
 - name: Add 'thinkpad_acpi' module to /etc/mkinitcpio.conf
   lineinfile:
     dest: /etc/mkinitcpio.conf
-    backrefs: yes
-    regexp: '^MODULES="(((?!thinkpad_acpi).)*)"$'
-    line: 'MODULES="\1 thinkpad_acpi"'
+    insertafter: '^MODULES.*'
+    line: 'MODULES+=" thinkpad_acpi"'
   notify:
     - Create initial ramdisk environment

@@ -8,8 +8,7 @@
 - name: Add 'radeon' module to /etc/mkinitcpio.conf
   lineinfile:
     dest: /etc/mkinitcpio.conf
-    backrefs: yes
-    regexp: '^MODULES="(((?!radeon).)*)"$'
-    line: 'MODULES="\1 radeon"'
+    insertafter: '^MODULES.*'
+    line: 'MODULES+=" radeon"'
   notify:
     - Create initial ramdisk environment
