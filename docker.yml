@@ -3,6 +3,7 @@
   become: yes
   roles:
     - aura
+    - btrfs
     - autologin
     - bspwm
     - chromium
