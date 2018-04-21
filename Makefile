@@ -9,6 +9,7 @@ lint:
 
 test:
 	docker build \
+		--pull \
 		--tag=alexandrecarlton/ansible-archlinux \
 		.
 	docker run \
