@@ -17,8 +17,4 @@ RUN pacman \
 ENV USER=root \
     container=docker
 
-# We create these volumes so that we may use systemd within this container.
-# See the FedoraDockerfiles/systemd/systemd/Dockerfile as a reference.
-VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
-
 CMD ["/sbin/init"]

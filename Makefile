@@ -12,13 +12,19 @@ test:
 		--pull \
 		--tag=alexandrecarlton/ansible-archlinux \
 		.
+	# We create these volumes so that we may use systemd within this container.
+	# See:
+	#  - https://github.com/fedora-cloud/Fedora-Dockerfiles/blob/master/systemd/systemd/Dockerfile
+	#  - https://developers.redhat.com/blog/2016/09/13/running-systemd-in-a-non-privileged-container/
 	docker run \
 		--detach \
 		--name=archlinux-ansible-test \
 		--rm \
 		--tty \
-		--volume=$(shell pwd):/ansible \
-		--volume=/sys/fs/cgroup:/sys/fs/cgroup:ro \
+		--mount=type=bind,source=$(shell pwd),destination=/ansible \
+		--mount=type=bind,source=/sys/fs/cgroup,destination=/sys/fs/cgroup,readonly \
+		--mount=type=tmpfs,tmpfs-size=512M,destination=/run \
+		--mount=type=tmpfs,tmpfs-size=256M,destination=/tmp \
 		--workdir /ansible \
 			alexandrecarlton/ansible-archlinux
 	# Afford it time to start up
