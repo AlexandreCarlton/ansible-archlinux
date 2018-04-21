@@ -1,6 +1,8 @@
 
 PLAYBOOK := docker.yml
 
+PLAYBOOK_OPTIONS := -vvv
+
 lint:
 	ansible-lint $(PLAYBOOK)
 .PHONY: lint
@@ -23,6 +25,6 @@ test:
 	docker exec \
 		--tty \
 		archlinux-ansible-test \
-		ansible-playbook $(PLAYBOOK)
+		ansible-playbook $(PLAYBOOK_OPTIONS) $(PLAYBOOK)
 	docker kill archlinux-ansible-test
 .PHONY: test
