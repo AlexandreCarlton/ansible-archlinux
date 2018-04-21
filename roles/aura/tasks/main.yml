@@ -28,7 +28,7 @@
     copy: no
   become: yes
   become_user: nobody
-  when: aura_installed|failed
+  when: aura_installed is failed
 
 - name: Prepare aura installation
   command: makepkg --noconfirm
@@ -36,11 +36,11 @@
     chdir: /tmp/aura-bin
   become: yes
   become_user: nobody
-  when: aura_installed|failed
+  when: aura_installed is failed
 
 - name: Install aura
   shell: pacman --upgrade aura-bin-*-x86_64.pkg.tar.xz --noconfirm
   args:
     chdir: /tmp/aura-bin
   become: yes
-  when: aura_installed|failed
+  when: aura_installed is failed
