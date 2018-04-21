@@ -21,11 +21,18 @@
   pacman:
     name: sudo
 
-- name: Download and extract aura
+# unarchive with a url resulted in permissions errors in downloading it,
+# hence the use of get_url as an intermediate step.
+- name: Download aura snapshot.
+  get_url:
+    url: https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz
+    dest: /tmp/aura-bin.tar.gz
+
+- name: Extract aura
   unarchive:
-    src: "https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz"
+    src: /tmp/aura-bin.tar.gz
     dest: /tmp
-    copy: no
+    remote_src: yes
   become: yes
   become_user: nobody
   when: aura_installed is failed
