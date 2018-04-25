@@ -16,3 +16,18 @@
     - lvm2-metad.socket
     - lvm2-lvmpolld.socket
     - lvm2-monitor.service
+
+- name: Install snapper to manage btrfs snapshots.
+  pacman:
+    name: snapper
+
+- name: Create snapper configurations
+  command: snapper -c {{ item.config }} create-config {{ item.mountpoint }}
+  args:
+    creates: /etc/snapper/configs/{{ item.config }}
+  with_items: "{{ btrfs_subvolume_mounts }}"
+
+
+- name: Install snap-pac for automatic snapshots.
+  pacman:
+    name: snap-pac

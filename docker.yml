@@ -18,3 +18,5 @@
     - xorg
   vars:
     system_hostname: docker
+    # Snapper will bail if we try to create a config for an invalid volume.
+    btrfs_snapper_configurations: []
