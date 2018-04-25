@@ -1,7 +1,7 @@
 
 PLAYBOOK := docker.yml
 
-PLAYBOOK_OPTIONS := -vvv
+PLAYBOOK_OPTIONS := -v
 
 lint:
 	ansible-lint $(PLAYBOOK)
