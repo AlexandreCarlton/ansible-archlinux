@@ -26,7 +26,7 @@
   replace:
     path: /etc/fstab
     regexp: "(.*),subvolid=.*,subvol=/{{ btrfs_root_subvolume }},subvol={{ btrfs_root_subvolume }}(.*)"
-    replace: "\1\2"
+    replace: '\1\2'
 
 - name: Install snapper to manage btrfs snapshots.
   pacman:

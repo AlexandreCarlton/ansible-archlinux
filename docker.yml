@@ -3,7 +3,9 @@
   become: yes
   roles:
     - aura
-    - btrfs
+    # We rely on subvolumes in the btrfs role, which we can't rely on on a foreign system that has docker
+    # (it could be using a different driver)
+    # - btrfs
     - autologin
     - bspwm
     - chromium
@@ -18,5 +20,3 @@
     - xorg
   vars:
     system_hostname: docker
-    # Snapper will bail if we try to create a config for an invalid volume.
-    btrfs_snapper_configurations: []

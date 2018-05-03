@@ -91,3 +91,5 @@ As such, we mimic the layout that OpenSUSE provides (described above).
 
  - [Btrfs and Rollback - How It Works and How to Avoid Pitfalls](https://events.static.linuxfound.org/sites/events/files/slides/Btrfs-Rollback-LinuxCon-20150907.pdf)
  - [Snapper Tutorial](http://snapper.io/tutorial.html)
+ - [System Recovery and Snapshot Management with Snapper](https://doc.opensuse.org/documentation/leap/reference/html/book.opensuse.reference/cha.snapper.html)
+ - [Snapper (ArchLinux)](https://wiki.archlinux.org/index.php/Snapper)
