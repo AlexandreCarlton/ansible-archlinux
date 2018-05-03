@@ -17,16 +17,33 @@
     - lvm2-lvmpolld.socket
     - lvm2-monitor.service
 
+# genfstab supplies the subvol= and subvolid= mount options.
+# These are set to  btrfs_root_subvolume.
+# We instead want to delegate to the current default subvolume, so that snapper
+# rollback setting the default actually boots us into a different subvolume.
+# TODO: Make this more robust; this is only guaranteed by looking at the generated /etc/fstab.
+- name: Remove subvol entry in root fstab to allow default subvolume to be mounted.
+  replace:
+    path: /etc/fstab
+    regexp: "(.*),subvolid=.*,subvol=/{{ btrfs_root_subvolume }},subvol={{ btrfs_root_subvolume }}(.*)"
+    replace: "\1\2"
+
 - name: Install snapper to manage btrfs snapshots.
   pacman:
     name: snapper
 
-- name: Create snapper configurations
-  command: snapper -c {{ item.config }} create-config {{ item.mountpoint }}
+- name: Create root snapper configuration.
+  command: snapper -c root create-config /
   args:
-    creates: /etc/snapper/configs/{{ item.config }}
-  with_items: "{{ btrfs_subvolume_mounts }}"
+    creates: /etc/snapper/configs/root
 
+- name: Mount root snapshot subvolume at boot.
+  mount:
+    fstype: btrfs
+    path: /.snapshots
+    opts: "subvol={{ btrfs_root_subvolume }}/.snapshots"
+    src: "{{ btrfs_root_device }}"
+    state: mounted
 
 - name: Install snap-pac for automatic snapshots.
   pacman:
