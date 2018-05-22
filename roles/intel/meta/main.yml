@@ -1,0 +1,2 @@
+dependencies:
+  - system # For the installation of mkinitcpio.conf
