@@ -1,27 +1,5 @@
 ---
 
-- name: install C/C++ compiler tools
-  pacman:
-    name: "{{ item }}"
-  with_items:
-    - clang
-    - clang-tools-extra
-    - gcc
-    - cmake
-    - gdb
-    - valgrind
-    - ccache
-    - distcc
-    - valgrind
-
-- name: Install C/C++ libraries
-  pacman:
-    name: "{{ item }}"
-  with_items:
-    - boost
-    - boost-libs
-    - gtest
-
 - name: Install main editors
   pacman:
     name: "{{ item }}"
