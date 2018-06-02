@@ -59,8 +59,8 @@
     delmakedeps: yes
   with_items:
     - gtk-theme-numix-solarized
-    - paper-gtk-theme-git
-    - paper-icon-theme-git
+    # - paper-gtk-theme-git
+    # - paper-icon-theme-git
     - numix-icon-theme-git
     - gtk-theme-solarc-git
 
