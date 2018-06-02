@@ -18,18 +18,6 @@
     - python-neovim
     - python2-neovim
 
-- name: Install haskell tools
-  pacman:
-    name: "{{ item }}"
-  with_items:
-    - ghc
-    # 8.2 is not yet ready
-    # - ghc-mod
-    - hlint
-    - stack
-    - hasktags
-    - hoogle
-
 - name: Install terminal emulators
   pacman:
     name: "{{ item }}"
