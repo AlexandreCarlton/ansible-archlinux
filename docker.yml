@@ -12,6 +12,7 @@
     - docker
     - dotfiles
     - java_development
+    - javascript_development
     - python_development
     - retroarch
     # We rely on subvolumes in the btrfs role, which we can't rely on on a foreign system that has docker

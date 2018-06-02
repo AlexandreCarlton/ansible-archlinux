@@ -30,15 +30,6 @@
     - hasktags
     - hoogle
 
-- name: Install JavaScript tools
-  pacman:
-    name: "{{ item }}"
-  with_items:
-    - npm
-    - typescript
-    - eslint
-  become: yes
-
 - name: Install terminal emulators
   pacman:
     name: "{{ item }}"
