@@ -22,6 +22,38 @@
     regexp: "(.*),subvolid=.*,subvol=/{{ btrfs_root_subvolume }},subvol={{ btrfs_root_subvolume }}(.*)"
     replace: '\1\2'
 
+- name: Run check to see if /home/{{ user_name }} is a btrfs subvolume.
+  command: stat --format=%i /home/{{ user_name }}
+  register: home_stat
+
+- block:
+    - name: Ensure /home/{{ user_name }}.tmp is absent
+      file:
+        path: "/home/{{ user_name }}.tmp"
+        state: absent
+
+    # Ansible sticks everything in /home/<user>/.ansible, so if we lose this in between steps then we're hosed.
+    - name: Convert /home/{{ user_name }}  to a btrfs subvolume
+      shell: |
+        mv "/home/{{ user_name }}" "/home/{{ user_name }}.tmp"
+        btrfs subvolume create "/home/{{ user_name }}"
+        # We set open permissions to allow Ansible to access /home/<user>/.ansible without issue.
+        chmod a+rwx "/home/{{ user_name }}"
+        cp -r /home/{{ user_name }}.tmp/* "/home/{{ user_name }}"
+        exit 0
+
+    - name: Set permissions of /home/{{ user_name }}
+      file:
+        path: "/home/{{ user_name }}"
+        owner: "{{ user_name }}"
+        mode: 0700
+
+    - name: Destroy leftover /home/{{ user_name }}.tmp
+        path: "/home/{{ user_name }}.tmp"
+        state: absent
+
+  when: home_stat.stdout != 256
+
 - name: Install snapper to manage btrfs snapshots.
   pacman:
     name: snapper
