@@ -3,9 +3,6 @@
   become: yes
   roles:
     - aura
-    # We rely on subvolumes in the btrfs role, which we can't rely on on a foreign system that has docker
-    # (it could be using a different driver)
-    # - btrfs
     - autologin
     - bspwm
     - chromium
@@ -14,6 +11,9 @@
     - docker
     - dotfiles
     - retroarch
+    # We rely on subvolumes in the btrfs role, which we can't rely on on a foreign system that has docker
+    # (it could be using a different driver)
+    # - snapper
     - system
     - user
     - vim_plugins

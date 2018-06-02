@@ -1,9 +1,6 @@
-# btrfs
+# snapper
 
-Sets up configuration for a `btrfs` system, including:
-
- - preventing LVM from running
- - setting up `snapper`.
+Sets up `snapper` for a `btrfs` filesystem.
 
 We assume that there is a root subvolume mounted at `/`.
 This is configured via the `btrfs_root_subvolume` variable, and defaults to
@@ -32,7 +29,7 @@ The following guides serves as a minor form of documentation since I had to
 cobble this together from multiple sources.
 
 
-### Rolling back to a known good snapshot
+### Rolling back `/` to a known good snapshot
 Snapshots are enumerated and can be found with `/.snapshots/<num>/snapshot`.
 If you need to boot into a previous snapshot, then you change the `rootflags`
 parameter at boot to:
@@ -66,6 +63,13 @@ This final step ensures that we will boot into this good snapshot, provided we
 have not set the `subvol` or `subvolid` flags to point to a given subvolume in
 `/etc/fstab` or as part of our `rootflags`.
 
+### Using pam_snapper
+
+`pam_snapper` allows us to snapshot our home directory every time we login.
+
+For now, we have it activate as part of `systemd-user`, although this fails to
+create post-snapshots on PAM session creation, and pre- and post-snapshots on
+close.
 
 ### Arch notes
 
@@ -83,8 +87,6 @@ As such, we mimic the layout that OpenSUSE provides (described above).
 
 ### Stretch goals
 
- - Leverage [`pam_snapper`](http://snapper.io/manpages/pam_snapper.html) to
-   automatically snapshot our home directory on every login.
  - Automatic deletion of snapshots to reduce waste.
 
 ### Further reading
@@ -93,3 +95,4 @@ As such, we mimic the layout that OpenSUSE provides (described above).
  - [Snapper Tutorial](http://snapper.io/tutorial.html)
  - [System Recovery and Snapshot Management with Snapper](https://doc.opensuse.org/documentation/leap/reference/html/book.opensuse.reference/cha.snapper.html)
  - [Snapper (ArchLinux)](https://wiki.archlinux.org/index.php/Snapper)
+ - [systemd-user doesn't properly close its PAM session](https://github.com/systemd/systemd/issues/8598)

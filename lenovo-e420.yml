@@ -3,7 +3,6 @@
   become: yes
   roles:
     - aura
-    - btrfs
     - autologin
     - bspwm
     - chromium
@@ -11,9 +10,11 @@
     - desktop
     - docker
     - dotfiles
+    - dropbox
     - laptop
     - radeon
     - retroarch
+    - snapper
     - system
     - systemd-boot
     - thinkpad
