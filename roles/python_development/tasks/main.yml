@@ -1,0 +1,25 @@
+
+- name: Install Python 3 development utilities
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - python
+    - pypy3
+    - python-pip
+    - python-pylint
+    - python-tox
+    - python-virtualenv
+    - ipython
+  become: yes
+
+- name: Install Python 2 development utilities
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - python2
+    - pypy
+    - python2-pip
+    - python2-pylint
+    - python2-virtualenv
+    - ipython2
+  become: yes
