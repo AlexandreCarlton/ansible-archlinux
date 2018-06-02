@@ -53,10 +53,4 @@
     - aspell
     - aspell-en
     - shellcheck
-
-- name: Install shell utilities (AUR)
-  aura:
-    name: "{{ item }}"
-    delmakedeps: yes
-  with_items:
-    - fasd-git
+    - fasd
