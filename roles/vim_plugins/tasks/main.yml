@@ -102,7 +102,6 @@
     - cmake
     - clang
     - python
-  become: yes
 
 # TODO: Because YCM is a behemoth, we should install YCM separately (forcing git update)
 # And if there is a change, we trigger the compilation through a handler.

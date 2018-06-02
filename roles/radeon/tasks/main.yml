@@ -3,7 +3,6 @@
 - name: Install ATI package
   pacman:
     name: xf86-video-ati
-  become: yes
 
 - name: Add 'radeon' module to /etc/mkinitcpio.conf
   lineinfile:

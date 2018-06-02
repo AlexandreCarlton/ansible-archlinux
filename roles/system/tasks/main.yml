@@ -7,7 +7,6 @@
   pacman:
     update_cache: yes
     upgrade: yes
-  become: yes
 
 - name: Give wheel group sudo (with password) privileges
   lineinfile:
@@ -15,12 +14,10 @@
     line: "%wheel ALL=(ALL) ALL"
     state: present
     validate: 'visudo -cf %s'
-  become: yes
 
 - name: Set hostname to {{ system_hostname }}
   hostname:
     name: "{{ system_hostname }}"
-  become: yes
   # hostnamectl doesn't work properly in a container (which is used for testing)
   # See https://lists.freedesktop.org/archives/systemd-devel/2017-February/038291.html
   when: lookup('env', 'container') != 'docker'
@@ -28,18 +25,15 @@
 - name: Set timezone to {{ system_timezone }}
   timezone:
     name: "{{ system_timezone }}"
-  become: yes
 
 - name: Set locale to {{ system_locale }}
   locale_gen:
     name: "{{ system_locale }}"
-  become: yes
 
 # Installing dash gives a slight speed up.
 - name: Install dash shell
   pacman:
     name: dash
-  become: yes
 
 - name: Set /bin/sh to point to dash
   file:
@@ -47,7 +41,6 @@
     src: dash
     state: link
     force: yes
-  become: yes
 
 - name: Install linux-zen kernel
   pacman:
@@ -55,7 +48,6 @@
   with_items:
     - linux-zen
     - linux-zen-headers
-  become: yes
 
 - name: Install mkinitcpio and presets
   pacman:
@@ -70,15 +62,12 @@
     dest: /etc/mkinitcpio.conf
   notify:
     - Create initial ramdisk environment
-  become: yes
 
 - name: Install pacman.conf
   file:
     path: etc/pacman.conf
     dest: /etc/pacman.conf
-  become: yes
 
 - name: Install sound utilities
   pacman:
     name: alsa-utils
-  become: yes

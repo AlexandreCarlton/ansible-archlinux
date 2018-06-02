@@ -3,7 +3,6 @@
 - name: Install rfkill to debug wireless issues if present
   pacman:
     name: rfkill
-  become: yes
 
 - name: Install ThinkPad packages
   pacman:

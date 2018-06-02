@@ -4,25 +4,21 @@
   group:
     name: vagrant
     state: present
-  become: yes
 
 - name: Create user 'vagrant'
   user:
     name: vagrant
     group: vagrant
-  become: yes
 
 - name: Set password of user 'vagrant' to 'vagrant'
   user:
     name: vagrant
     password: "{{ vagrant.password }}"
-  become: yes
 
 - name: Set root password to 'vagrant'
   user:
     name: root
     password: "{{ vagrant.password }}"
-  become: yes
 
 # TODO: See readme concerning SSH_AUTH_SOCKET
 - name: Enable password-less sudo for 'vagrant'
@@ -31,7 +27,6 @@
     dest: /etc/sudoers.d/vagrant
     mode: 0440
     validate: 'visudo -cf %s'
-  become: yes
 
 - name: Create vagrant .ssh folder with correct permissions.
   file:

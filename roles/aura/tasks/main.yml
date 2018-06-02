@@ -27,6 +27,7 @@
   get_url:
     url: https://aur.archlinux.org/cgit/aur.git/snapshot/aura-bin.tar.gz
     dest: /tmp/aura-bin.tar.gz
+  when: aura_installed is failed
 
 - name: Extract aura
   unarchive:

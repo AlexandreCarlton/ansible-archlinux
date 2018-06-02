@@ -10,7 +10,6 @@
     - python-tox
     - python-virtualenv
     - ipython
-  become: yes
 
 - name: Install Python 2 development utilities
   pacman:
@@ -22,4 +21,3 @@
     - python2-pylint
     - python2-virtualenv
     - ipython2
-  become: yes

@@ -8,5 +8,7 @@ Reproduces my machine (ArchLinux) from scratch so I can re-deploy to new machine
 ansible-playbook lenovo-e420.yml --ask-become-pass
 ```
 
-We can also use the `virtual-machine.yml` playbook to provision a vagrant box with
-the VirtualBox provider.
+Several roles also come with their own documentation:
+
+ - [`snapper`](roles/snapper)
+ - [`thinkpad`](roles/thinkpad)

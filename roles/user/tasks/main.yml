@@ -7,20 +7,17 @@
     password: "{{ user_password }}"
     update_password: on_create
     createhome: yes
-  become: yes
 
 # Can be one of [bash, zsh, fish]
 - name: Install preferred shell for {{ user_name }}
   package:
     name: "{{ user_shell }}"
     state: present
-  become: yes
 
 - name: Set preferred shell for {{ user_name }}
   user:
     name: "{{ user_name }}"
     shell: /usr/bin/{{ user_shell }}
-  become: yes
 
 - name: Create "Code" folder
   file:

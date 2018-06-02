@@ -3,22 +3,18 @@
 - name: Install Chromium web browser
   pacman:
     name: chromium
-  become: yes
 
 - name: Install Chromium extensions
   aura:
     name: chromium-widevine # For Netflix
-  become: yes
 
 - name: Install profile-sync-daemon
   aura:
     name: profile-sync-daemon
     delmakedeps: yes
-  become: yes
 
 - name: Use psd-overlay-helper
   lineinfile:
     dest: /etc/sudoers
     line: "{{ user_name }} ALL=NOPASSWD: /usr/bin/psd-overlay-helper"
     validate: visudo -cf %s
-  become: yes

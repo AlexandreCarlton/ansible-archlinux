@@ -3,7 +3,6 @@
 - name: Install intel package
   pacman:
     name: xf86-video-intel
-  become: yes
 
 - name: Add 'i915' module to /etc/mkinitcpio.conf
   lineinfile:

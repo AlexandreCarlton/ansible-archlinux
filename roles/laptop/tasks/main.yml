@@ -9,65 +9,54 @@
   with_items:
     - connman
     - wpa_supplicant
-  become: yes
 
 - name: Create connman configuration folder
   file:
     path: /etc/connman
     state: directory
-  become: yes
 
 - name: Copy in connman configuration
   copy:
     src: etc/connman/main.conf
     dest: /etc/connman/main.conf
-  become: yes
 
 - name: Enable connman
   systemd:
     name: connman
     enabled: yes
-  become: yes
 
 - name: Install battery / thermal reader
   pacman:
     name: acpi
-  become: yes
 
 - name: Install thermald
   pacman:
     name: thermald
-  become: yes
 
 - name: Enable thermald
   service:
     name: thermald
     enabled: yes
-  become: yes
 
 - name: Install automounter (AUR)
   aura:
     name: ldm
     delmakedeps: yes
-  become: yes
 
 - name: Enable automounter
   systemd:
     name: ldm
     daemon_reload: yes
     enabled: yes
-  become: yes
 
 - name: Install automounter configuration
   template:
     src: ldm.conf.j2
     dest: /etc/ldm.conf
-  become: yes
 
 - name: Install crda to use correct Wireless Regulatory Domain
   pacman:
     name: crda
-  become: yes
 
 - name: Set WRD to Australia
   lineinfile:
@@ -75,4 +64,3 @@
     state: present
     regexp: '^#?WIRELESS_REGDOM="AU"'
     line: 'WIRELESS_REGDOM="AU"'
-  become: yes
