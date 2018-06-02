@@ -12,5 +12,10 @@
   pacman:
     name: "{{ item }}"
   with_items:
-    - retroarch-autoconfig-udev # automatically map joypad buttons when plugged in.
     - retroarch-assets-xmb
+
+- name: Install AUR retroarch utilities
+  aura:
+    name: "{{ item }}"
+  with_items:
+    - retroarch-autoconfig-udev-git # automatically map joypad buttons when plugged in.
