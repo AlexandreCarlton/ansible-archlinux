@@ -1,0 +1,13 @@
+
+- name: Install IntelliJ Community Edition
+  pacman:
+    name: intellij-idea-community-edition
+  when: not has_jetbrains_licence
+
+- name: Install IntelliJ Ultimate Edition
+  aura:
+    name: "{{ item }}"
+  with_items:
+    - intellij-idea-ultimate-edition-jre
+    - intellij-idea-ultimate-edition
+  when: has_jetbrains_licence
