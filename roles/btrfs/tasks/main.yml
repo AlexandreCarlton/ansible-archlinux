@@ -69,7 +69,42 @@
     path: /.snapshots
     opts: "subvol={{ btrfs_root_subvolume }}/.snapshots"
     src: "{{ btrfs_root_device }}"
-    state: mounted
+    state: present
+
+- name: Create home_{{ user_name }} snapper configuration.
+  command: snapper -c home_{{ user_name }} create-config /home/{{ user_name }}
+  args:
+    creates: /etc/snapper/configs/home_{{ user_name }}
+
+# If we rollback even once then our default subvolume changes to a snapshot.
+# This means that the root subvolume won't be mounted by default and with it the home subvolume.
+# We thus explicitly mount the home subvolume
+- name: Mount /home/{{ user_name }} subvolume at boot.
+  mount:
+    fstype: btrfs
+    path: "/home/{{ user_name }}"
+    opts: "subvol={{ btrfs_root_subvolume }}/home/{{ user_name }}"
+    src: "{{ btrfs_root_device }}"
+    state: present
+
+# We won't rollback the subvolume (since we cannot set-default for a particular path, only /),
+# so we only mount /home/<user> and not /home/<user>/.snapshots
+
+- name: Allow user {{ user_name }} to manage home_{{ user_name }} snapper configuration.
+  lineinfile:
+    path: /etc/snapper/configs/home_{{ user_name }}
+    regexp: '^ALLOW_USERS='
+    line: 'ALLOW_USERS="{{ user_name }}"'
+
+# Normally pam_snapper is supposed to:
+# - create a pre- and post- snapshot on login
+# - create a pre- and post- snapshot on logout
+# However, systemd-user is a bit weird since it doesn't trigger pam_snapper on logout, and pam_snapper never makes the post-snapshot.
+# So we call 'openonly' to make a single snapshot on login.
+- name: Enable pam_snapper in systemd-user to create snapshots of /home/{{ user_name }} on login.
+  lineinfile:
+    path: /etc/pam.d/systemd-user
+    line: session  optional pam_snapper.so openonly
 
 - name: Install snap-pac for automatic snapshots.
   pacman:
