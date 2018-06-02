@@ -25,6 +25,7 @@
 - name: Run check to see if /home/{{ user_name }} is a btrfs subvolume.
   command: stat --format=%i /home/{{ user_name }}
   register: home_stat
+  changed_when: false
 
 - block:
     - name: Ensure /home/{{ user_name }}.tmp is absent
@@ -49,6 +50,7 @@
         mode: 0700
 
     - name: Destroy leftover /home/{{ user_name }}.tmp
+      file:
         path: "/home/{{ user_name }}.tmp"
         state: absent
 
