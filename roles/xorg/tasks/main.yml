@@ -8,6 +8,8 @@
     - xorg
     - xorg-apps
     - xorg-server
+    # If xorg can't find the specific driver for our hardware, it defaults to fbdev.
+    - xf86-video-fbdev
 
 # Had to manually rewrite this; could be a line-ending thing.
 - name: Allow Xorg to be used by anyone
