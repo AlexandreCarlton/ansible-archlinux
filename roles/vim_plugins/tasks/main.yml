@@ -40,25 +40,25 @@
     update: no
     version: master
   with_items:
+    - { plugin: 'ale',                        author: 'w0rp' }
     - { plugin: 'ansible-vim',                author: 'pearofducks' }
     - { plugin: 'csv.vim',                    author: 'chrisbra' }
     - { plugin: 'delimitMate',                author: 'raimondi' }
     - { plugin: 'Dockerfile.vim',             author: 'ekalinin' }
     - { plugin: 'editorconfig-vim',           author: 'editorconfig' }
-    - { plugin: 'fzf',                        author: 'junegunn' }
+    - { plugin: 'fzf.vim',                    author: 'junegunn' }
     - { plugin: 'ghcmod-vim',                 author: 'eagletmt' }
     - { plugin: 'gv.vim',                     author: 'junegunn' }
     - { plugin: 'haskell-vim',                author: 'neovimhaskell' }
     - { plugin: 'html5.vim',                  author: 'othree' }
     - { plugin: 'LaTeX-Box',                  author: 'LaTeX-Box-Team' }
     - { plugin: 'lightline.vim',              author: 'itchyny' }
+    - { plugin: 'mediawiki.vim',              author: 'chikamichi' }
     - { plugin: 'neco-ghc',                   author: 'eagletmt' }
-    - { plugin: 'neomake',                    author: 'benekastah' }
     - { plugin: 'numbers.vim',                author: 'myusuf3' }
     - { plugin: 'Recover.vim',                author: 'chrisbra' }
     - { plugin: 'rust.vim',                   author: 'rust-lang' }
     - { plugin: 'tagbar',                     author: 'majutsushi' }
-    - { plugin: 'tmux.vim',                   author: 'Keithbsmiley' }
     - { plugin: 'UltiSnips',                  author: 'SirVer' }
     - { plugin: 'undotree',                   author: 'mbbill' }
     - { plugin: 'vim-abolish',                author: 'tpope' }
