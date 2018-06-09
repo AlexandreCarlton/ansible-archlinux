@@ -16,6 +16,7 @@
     - feh
     - scrot
     - graphicsmagick
+    - pacman-contrib
 
 - name: Install window manager utilities (AUR)
   aura:
