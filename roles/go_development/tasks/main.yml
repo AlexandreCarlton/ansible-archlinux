@@ -1,0 +1,8 @@
+---
+- name: Install go development tools
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - go
+    - go-tools
+    - godep

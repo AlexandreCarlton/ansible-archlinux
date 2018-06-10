@@ -11,6 +11,7 @@
     - desktop
     - docker
     - dotfiles
+    - go_development
     - haskell_development
     - java_development
     - javascript_development
