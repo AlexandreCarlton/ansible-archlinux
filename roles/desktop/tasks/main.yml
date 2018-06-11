@@ -10,7 +10,6 @@
     - ttf-font-awesome
     - ttf-liberation
     - ttf-roboto
-    - ttf-symbola
     - ttf-ubuntu-font-family
 
 - name: Install fonts (AUR)
