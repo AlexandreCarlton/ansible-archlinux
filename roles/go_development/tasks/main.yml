@@ -3,6 +3,7 @@
   pacman:
     name: "{{ item }}"
   with_items:
+    - dep
     - go
     - go-tools
     - godep
