@@ -2,4 +2,4 @@ title Arch Linux {{ item | capitalize }}
 linux /vmlinuz-linux-{{ item }}
 initrd /intel-ucode.img
 initrd /initramfs-linux-{{ item }}.img
-options cryptdevice=/dev/sda2:cryptroot root=/dev/mapper/cryptroot rw
+options cryptdevice={{ systemd_boot_device }}:{{ systemd_boot_dmname }} root=/dev/mapper/{{ systemd_boot_dmname }} rw

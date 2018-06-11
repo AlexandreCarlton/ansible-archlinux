@@ -1,0 +1,5 @@
+---
+# The path to the device backing the encrypted device
+systemd_boot_device: /dev/sda3
+# the device-mapper name given to the device after decryption, available as /dev/mapper/{{ dmname }}
+systemd_boot_dmname: cryptroot

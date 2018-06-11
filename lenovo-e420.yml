@@ -22,8 +22,5 @@
     - vim_plugins
     - xorg
   vars:
-    mkinitcpio:
-      modules:
-        - radeon
-        - thinkpad_acpi
     system_hostname: flygon
+    systemd_boot_device: /dev/sda2
