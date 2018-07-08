@@ -11,3 +11,11 @@
     - intellij-idea-ultimate-edition-jre
     - intellij-idea-ultimate-edition
   when: has_jetbrains_licence
+
+# See https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit
+- name: Set inotify watches limit to {{ inotify_max_user_watches }}
+  lineinfile:
+    path: /etc/sysctl.d/idea.conf
+    regexp: "^fs.inotify.max_user_watches.*"
+    line: "fs.inotify.max_user_watches = {{ inotify_max_user_watches }}"
+    create: yes

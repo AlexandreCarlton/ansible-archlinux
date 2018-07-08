@@ -1,2 +1,4 @@
 
 has_jetbrains_licence: false
+
+inotify_max_user_watches: 524288
