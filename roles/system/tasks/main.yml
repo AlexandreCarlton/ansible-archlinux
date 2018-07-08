@@ -71,3 +71,7 @@
 - name: Install sound utilities
   pacman:
     name: alsa-utils
+
+- name: Install openssh
+  pacman:
+    name: openssh
