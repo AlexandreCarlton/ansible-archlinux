@@ -10,5 +10,6 @@ ansible-playbook lenovo-e420.yml --ask-become-pass
 
 Several roles also come with their own documentation:
 
+ - [`optimus`](roles/optimus)
  - [`snapper`](roles/snapper)
  - [`thinkpad`](roles/thinkpad)

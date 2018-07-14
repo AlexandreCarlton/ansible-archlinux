@@ -1,0 +1,31 @@
+---
+
+- name: Install nvidia drivers.
+  pacman:
+    name: nvidia
+
+- name: Install bumblebee packages.
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - bbswitch
+    - bumblebee
+    - mesa
+
+# TODO: This might not be necessary.
+- name: Create bumblebee group.
+  group:
+    name: bumblebee
+
+- name: Add {{ user_name }} to the bumblebee group.
+  user:
+    name: "{{ user_name }}"
+    groups:
+      - bumblebee
+    append: yes
+
+- name: Enable bumblebee on boot.
+  systemd:
+    name: bumblebeed
+    enabled: yes
+    state: started
