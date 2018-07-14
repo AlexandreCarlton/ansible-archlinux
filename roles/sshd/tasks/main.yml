@@ -1,0 +1,24 @@
+---
+- name: Install openssh
+  pacman:
+    name: openssh
+
+- name: Install xorg packages for X11 Forwarding
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - xorg-xauth
+    - xorg-xhost
+
+- name: Enable X11 Forwarding
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^X11Forwarding.*'
+    line: 'X11Forwarding yes'
+  notify:
+    - Restart sshd
+
+- name: Enable sshd on boot
+  systemd:
+    name: sshd
+    enabled: yes
