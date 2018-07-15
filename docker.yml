@@ -15,11 +15,13 @@
     - haskell_development
     - java_development
     - javascript_development
+    - optimus
     - python_development
     - retroarch
     # We rely on subvolumes in the btrfs role, which we can't rely on on a foreign system that has docker
     # (it could be using a different driver)
     # - snapper
+    - sshd
     - system
     - user
     - vim_plugins
