@@ -1,0 +1,37 @@
+---
+
+- name: Install cups.
+  pacman:
+    name: cups
+
+- name: Add '{{ user_name }}' to 'cups' group.
+  user:
+    name: '{{ user_name }}'
+    groups:
+      - cups
+    append: yes
+
+- name: Enable the cups service at boot.
+  systemd:
+    name: orgs.cups.cupsd
+    state: started
+    enabled: yes
+
+- name: Set default paper size to {{ cups_paper_size }}.
+  template:
+    src: papersize.j2
+    dest: /etc/papersize
+
+- name: Allow users in 'cups' group to administrate printers
+  lineinfile:
+    dest: /etc/cups/cups-files.conf
+    regexp: '^SystemGroup'
+    # sys and root are already in there default.
+    line: SystemGroup sys root cups
+  notify:
+    - Restart cups
+
+- name: Install AUR printer drivers
+  aura:
+    name: "{{ item }}"
+  with_items: "{{ cups_aur_printer_drivers }}"
