@@ -1,6 +1,11 @@
-FROM base/archlinux:latest
+FROM alexandrecarlton/systemd:latest
 
 RUN pacman \
+      --noconfirm \
+      --refresh \
+      --sync \
+      --sysupgrade && \
+    pacman \
       --noconfirm \
       --sync \
       ansible
