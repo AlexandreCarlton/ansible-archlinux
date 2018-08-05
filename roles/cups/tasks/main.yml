@@ -13,7 +13,7 @@
 
 - name: Enable the cups service at boot.
   systemd:
-    name: orgs.cups.cupsd
+    name: org.cups.cupsd
     state: started
     enabled: yes
 
