@@ -1,5 +1,7 @@
 ---
 cups_paper_size: a4
 
+cups_admin_group: cups_admin
+
 cups_aur_printer_drivers:
   - brother-hl2270dw

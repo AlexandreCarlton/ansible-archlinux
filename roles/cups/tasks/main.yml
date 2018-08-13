@@ -4,11 +4,12 @@
   pacman:
     name: cups
 
-- name: Add '{{ user_name }}' to 'cups' group.
+# We do not add ourselves to the 'cups' group for security reasons.
+- name: Add '{{ user_name }}' to '{{ cups_admin_group }}' group.
   user:
     name: '{{ user_name }}'
     groups:
-      - cups
+      - "{{ cups_admin_group }}"
     append: yes
 
 - name: Enable the cups service at boot.
@@ -27,7 +28,8 @@
     dest: /etc/cups/cups-files.conf
     regexp: '^SystemGroup'
     # sys and root are already in there default.
-    line: SystemGroup sys root cups
+    # We do not append 'cups' for security reasons, so we make our custom group
+    line: SystemGroup sys root {{ cups_admin_group }}
   notify:
     - Restart cups
 
