@@ -96,3 +96,4 @@ As such, we mimic the layout that OpenSUSE provides (described above).
  - [System Recovery and Snapshot Management with Snapper](https://doc.opensuse.org/documentation/leap/reference/html/book.opensuse.reference/cha.snapper.html)
  - [Snapper (ArchLinux)](https://wiki.archlinux.org/index.php/Snapper)
  - [systemd-user doesn't properly close its PAM session](https://github.com/systemd/systemd/issues/8598)
+ - [Automatic Snapshot Clean-Up](https://www.suse.com/documentation/sles-12/book_sle_admin/data/sec_snapper_clean-up.html)

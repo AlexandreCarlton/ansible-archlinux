@@ -98,6 +98,42 @@
     regexp: '^ALLOW_USERS='
     line: 'ALLOW_USERS="{{ user_name }}"'
 
+# Clean up snapshots since we'll just keep consuming space.
+# See https://www.suse.com/documentation/sles-12/book_sle_admin/data/sec_snapper_clean-up.html for configuration details.
+
+- name: Enable number cleanup algorithm for each configuration.
+  lineinfile:
+    path: /etc/snapper/configs/{{ item }}
+    regexp: '^NUMBER_CLEANUP='
+    line: 'NUMBER_CLEANUP="yes"'
+  with_items:
+    - root
+    - home_{{ user_name }}
+
+- name: Disable age as a criteria to satisfy before automatically removing snapshots for each configuration.
+  lineinfile:
+    path: /etc/snapper/configs/{{ item }}
+    regexp: '^NUMBER_MIN_AGE='
+    line: 'NUMBER_MIN_AGE=0'
+  with_items:
+    - root
+    - home_{{ user_name }}
+
+- name: Keep at most {{ snapper_number_limit }} snapshots for each configuration.
+  lineinfile:
+    path: /etc/snapper/configs/{{ item }}
+    regexp: '^NUMBER_LIMIT='
+    line: 'NUMBER_LIMIT={{ snapper_number_limit }}'
+  with_items:
+    - root
+    - home_{{ user_name }}
+
+- name: Enable snapper-cleanup to remove old snapshots.
+  systemd:
+    name: snapper-cleanup.timer
+    state: started
+    enabled: yes
+
 # Normally pam_snapper is supposed to:
 # - create a pre- and post- snapshot on login
 # - create a pre- and post- snapshot on logout
