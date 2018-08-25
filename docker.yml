@@ -11,7 +11,8 @@
     - development
     - desktop
     - docker
-    - dotfiles
+    # Installation of tofiles is breaking on Travis, not sure why.
+    # - dotfiles
     - go_development
     - haskell_development
     - java_development
