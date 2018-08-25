@@ -4,6 +4,10 @@
   pacman:
     name: cups
 
+- name: Create '{{ cups_admin_group }}' group.
+  group:
+    name: '{{ cups_admin_group }}'
+
 # We do not add ourselves to the 'cups' group for security reasons.
 - name: Add '{{ user_name }}' to '{{ cups_admin_group }}' group.
   user:
