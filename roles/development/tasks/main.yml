@@ -54,3 +54,9 @@
     - aspell-en
     - shellcheck
     - fasd
+
+- name: Install AUR shell utilities
+  aura:
+    name: "{{ item }}"
+  with_items:
+    - fisher
