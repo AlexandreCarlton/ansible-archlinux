@@ -35,6 +35,11 @@
   pacman:
     name: dash
 
+# Bash upgrades reset /bin/sh
+- name: Add hook to repoint /bin/sh to dash on upgrade
+  aura:
+    name: dashbinsh
+
 - name: Set /bin/sh to point to dash
   file:
     path: /bin/sh
