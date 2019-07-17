@@ -1,0 +1,15 @@
+---
+
+- name: Install yubikey utilities
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - ccid
+    - libu2f-host
+    - yubikey-manager-gt
+
+- name: Enable and start pcscd
+  systemd:
+    name: pcscd
+    state: started
+    enabled: yes
