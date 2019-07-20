@@ -21,3 +21,17 @@
     - python2-pylint
     - python2-virtualenv
     - ipython2
+
+- name: Install Python Language Server and optional dependencies
+  pacman:
+    name: "{{ item }}"
+  with_items:
+    - python-language-server
+    - python-mccabe
+    - python-rope
+    - python-pyflakes
+    - python-pycodestyle
+    - python-pylint
+    - autopep8
+    - yapf
+    - python-pydocstyle
