@@ -5,10 +5,9 @@
 
 - name: Install connection manager
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - connman
-    - wpa_supplicant
+    name:
+      - connman
+      - wpa_supplicant
 
 - name: Create connman configuration folder
   file:

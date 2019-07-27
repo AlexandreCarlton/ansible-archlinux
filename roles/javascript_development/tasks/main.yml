@@ -2,14 +2,12 @@
 
 - name: Install JavaScript package managers
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - npm
-    - yarn
+    name:
+      - npm
+      - yarn
 
 - name: Install JavaScript utilities
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - typescript
-    - eslint
+    name:
+      - typescript
+      - eslint

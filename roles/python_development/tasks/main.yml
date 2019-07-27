@@ -1,37 +1,24 @@
 
 - name: Install Python 3 development utilities
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - python
-    - pypy3
-    - python-pip
-    - python-pylint
-    - python-tox
-    - python-virtualenv
-    - ipython
-
-- name: Install Python 2 development utilities
-  pacman:
-    name: "{{ item }}"
-  with_items:
-    - python2
-    - pypy
-    - python2-pip
-    - python2-pylint
-    - python2-virtualenv
-    - ipython2
+    name:
+      - python
+      - pypy3
+      - python-pip
+      - python-pylint
+      - python-tox
+      - python-virtualenv
+      - ipython
 
 - name: Install Python Language Server and optional dependencies
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - python-language-server
-    - python-mccabe
-    - python-rope
-    - python-pyflakes
-    - python-pycodestyle
-    - python-pylint
-    - autopep8
-    - yapf
-    - python-pydocstyle
+    name:
+      - python-language-server
+      - python-mccabe
+      - python-rope
+      - python-pyflakes
+      - python-pycodestyle
+      - python-pylint
+      - autopep8
+      - yapf
+      - python-pydocstyle

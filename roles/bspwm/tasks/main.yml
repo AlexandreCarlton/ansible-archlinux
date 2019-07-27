@@ -1,22 +1,20 @@
 ---
 - name: Install bspwm and sxhkd
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - bspwm
-    - sxhkd
+    name:
+      - bspwm
+      - sxhkd
 
 - name: Install bspwm utilities
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - rofi
-    - i3lock
-    - unclutter
-    - feh
-    - scrot
-    - graphicsmagick
-    - pacman-contrib
+    name:
+      - rofi
+      - i3lock
+      - unclutter
+      - feh
+      - scrot
+      - graphicsmagick
+      - pacman-contrib
 
 - name: Install window manager utilities (AUR)
   aura:
@@ -28,18 +26,16 @@
 # TODO: Make PKGBUILD for lightstatus
 - name: Install lightstatus build dependencies
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - clang
-    - make
+    name:
+      - clang
+      - make
 
 - name: Install lighstatus runtime dependencies
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - alsa-lib
-    - libevdev
-    - wireless_tools
+    name:
+      - alsa-lib
+      - libevdev
+      - wireless_tools
 
 - name: Download lightstatus
   git:

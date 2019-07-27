@@ -2,61 +2,50 @@
 
 - name: Install main editors
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - gvim
-    - neovim
-    - emacs
+    name:
+      - gvim
+      - neovim
+      - emacs
 
 - name: Install editor complements
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - ctags
-    - cscope
-    - editorconfig-core-c
-    - python-neovim
-    - python2-neovim
+    name:
+      - ctags
+      - cscope
+      - editorconfig-core-c
+      - python-neovim
+      - python2-neovim
 
 - name: Install terminal emulators
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - rxvt-unicode
-    - xterm
-    - xclip
-
-- name: Install shells
-  pacman:
-    name: "{{ item }}"
-  with_items:
-    - zsh
-    - fish
+    name:
+      - rxvt-unicode
+      - xterm
+      - xclip
 
 # TODO: split this up
-- name: Install shell utilities
+- name: Install shell with utilities
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - tmux
-    - thefuck
-    - zsh
-    - htop
-    - diff-so-fancy
-    - the_silver_searcher
-    - ripgrep
-    - wget
-    - ranger
-    - pass
-    - git
-    - fzf
-    - aspell
-    - aspell-en
-    - shellcheck
-    - fasd
+    name:
+      - fish
+      - tmux
+      - thefuck
+      - zsh
+      - htop
+      - diff-so-fancy
+      - the_silver_searcher
+      - ripgrep
+      - wget
+      - ranger
+      - pass
+      - git
+      - fzf
+      - aspell
+      - aspell-en
+      - shellcheck
+      - fasd
 
 - name: Install AUR shell utilities
   aura:
-    name: "{{ item }}"
-  with_items:
-    - fisher
+    name:
+      - fisher

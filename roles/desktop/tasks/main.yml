@@ -35,40 +35,33 @@
 
 - name: Install zathura reader with extensions
   pacman:
-    name: "{{ item }}"
-  with_items:
-   - zathura
-   - zathura-cb
-   - zathura-djvu
-   - zathura-pdf-mupdf
-   - zathura-ps
+    name:
+      - zathura
+      - zathura-cb
+      - zathura-djvu
+      - zathura-pdf-mupdf
+      - zathura-ps
 
 - name: Install GTK themes
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - gtk-engine-murrine
-    - gtk-engines
-    - numix-gtk-theme
-    - arc-gtk-theme
+    name:
+      - gtk-engine-murrine
+      - gtk-engines
+      - arc-gtk-theme
 
 - name: Install GTK themes (AUR)
   aura:
-    name: "{{ item }}"
+    name:
+      - gtk-theme-numix-solarized
+      - numix-icon-theme-git
+      - gtk-theme-solarc-git
     delmakedeps: yes
-  with_items:
-    - gtk-theme-numix-solarized
-    # - paper-gtk-theme-git
-    # - paper-icon-theme-git
-    - numix-icon-theme-git
-    - gtk-theme-solarc-git
 
 - name: Install notifier
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - dunst
-    - notification-daemon
+    name:
+      - dunst
+      - notification-daemon
 
 - name: Install redshift
   pacman:

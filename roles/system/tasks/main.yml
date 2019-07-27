@@ -49,17 +49,15 @@
 
 - name: Install linux-zen kernel
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - linux-zen
-    - linux-zen-headers
+    name:
+      - linux-zen
+      - linux-zen-headers
 
 - name: Install mkinitcpio and presets
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - linux
-    - mkinitcpio
+    name:
+      - linux
+      - mkinitcpio
 
 - name: Install mkinitcpio configuration
   copy:

@@ -6,9 +6,8 @@
 
 - name: Install ThinkPad packages
   pacman:
-    name: '{{ item }}'
-  with_items:
-    - tp_smapi
+    name:
+      - tp_smapi
 
 - name: Add 'thinkpad_acpi' module to /etc/mkinitcpio.conf
   lineinfile:

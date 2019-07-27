@@ -2,11 +2,10 @@
 
 - name: Install makepkg dependencies
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - binutils # for the 'strip' binary
-    - ccache
-    - fakeroot # So that we may enter the 'fakeroot' environment to build aura
+    name:
+      - binutils # for the 'strip' binary
+      - ccache
+      - fakeroot # So that we may enter the 'fakeroot' environment to build aura
 
 - name: Check if Aura is installed.
   command: pacman -Qi aura-bin
