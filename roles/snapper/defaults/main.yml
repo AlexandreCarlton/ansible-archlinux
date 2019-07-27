@@ -1,6 +1,3 @@
-
-btrfs_root_subvolume: '@'
-
-btrfs_root_device: /dev/mapper/cryptroot
+---
 
 snapper_number_limit: 10

@@ -1,0 +1,33 @@
+---
+
+# Converts {{ directory }} to a subvolume
+# The permissions of the original directory are NOT preserved.
+
+- name: Run check to see if {{ directory }} is a btrfs subvolume.
+  command: stat --format=%i {{ directory }}
+  register: stat_btrfs
+  changed_when: false
+
+- block:
+   - name: Ensure {{ directory }}.tmp is absent
+     file:
+       path: "{{ directory }}.tmp"
+       state: absent
+
+   # Ansible sticks everything in /home/<user>/.ansible, so if we lose this in between steps then we're hosed.
+   # We set open permissions to allow Ansible to access /home/<user>/.ansible without issue.
+   # We'll fix this up in subsequent tasks.
+   - name: Convert {{ directory }} to a btrfs subvolume
+     shell: |
+       mv {{ directory }} {{ directory }}.tmp
+       btrfs subvolume create {{ directory }}
+       chmod a+rwx {{ directory }}
+       cp -a {{ directory }}.tmp/. {{ directory }}
+       exit 0
+
+   - name: Destroy leftover {{ directory }}.tmp
+     file:
+       path: "{{ directory }}.tmp"
+       state: absent
+
+  when: stat_btrfs.stdout != 256

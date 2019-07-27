@@ -1,0 +1,77 @@
+---
+
+# If lvm2 sneaks onto our machine (via something that requires it as a
+# dependency, e.g. udisks) then several services will be enabled automatically.
+- name: Mask lvm services.
+  systemd:
+    name: "{{ item }}"
+    masked: yes
+  with_items:
+    - lvm2-lvmetad.socket
+    - lvm2-lvmpolld.socket
+    - lvm2-monitor.service
+
+# genfstab supplies the subvol= and subvolid= mount options.
+# These are set to  btrfs_root_subvolume.
+# We instead want to delegate to the current default subvolume, so that snapper
+# rollback (which sets the default subvolume) actually boots us into a different subvolume.
+# TODO: Make this more robust; this is only guaranteed by looking at the generated /etc/fstab.
+- name: Remove subvol entry in root fstab to allow default subvolume to be mounted.
+  replace:
+    path: /etc/fstab
+    regexp: "(.*),subvolid=.*,subvol=/{{ btrfs_root_subvolume }},subvol={{ btrfs_root_subvolume }}(.*)"
+    replace: '\1\2'
+
+- name: Create /home/{{ user_name }}/.cache directory if not already present.
+  file:
+    path: /home/{{ user_name }}/.cache
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    mode: '0755'
+    state: directory
+
+# We convert /home so that we can snapshot it by itself,
+# And the cache folders so they can be excluded from snapshotting.
+- include_tasks: convert-subvolume.yml
+  loop:
+    - /home/{{ user_name }}
+    - /home/{{ user_name }}/.cache
+    - /var/cache
+  loop_control:
+    loop_var: directory
+
+- name: Set permissions of /home/{{ user_name }}
+  file:
+    path: /home/{{ user_name }}
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    mode: '0700'
+    state: directory
+
+- name: Set permissions of /home/{{ user_name }}/.cache
+  file:
+    path: /home/{{ user_name }}/.cache
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
+    mode: '0755'
+    state: directory
+
+
+- name: Mount root snapshot subvolume at boot.
+  mount:
+    fstype: btrfs
+    path: /.snapshots
+    opts: "subvol={{ btrfs_root_subvolume }}/.snapshots"
+    src: "{{ btrfs_root_device }}"
+    state: present
+
+# If we rollback even once then our default subvolume changes to a snapshot.
+# This means that the root subvolume won't be mounted by default and with it the home subvolume.
+# We thus explicitly mount the home subvolume
+- name: Mount /home/{{ user_name }} subvolume at boot.
+  mount:
+    fstype: btrfs
+    path: "/home/{{ user_name }}"
+    opts: "subvol={{ btrfs_root_subvolume }}/home/{{ user_name }}"
+    src: "{{ btrfs_root_device }}"
+    state: present
