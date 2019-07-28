@@ -18,10 +18,9 @@
 
 - name: Install window manager utilities (AUR)
   aura:
-    name: "{{ item }}"
+    name:
+      - lemonbar-git
     delmakedeps: yes
-  with_items:
-    - lemonbar-git
 
 # TODO: Make PKGBUILD for lightstatus
 - name: Install lightstatus build dependencies
