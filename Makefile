@@ -35,3 +35,17 @@ test:
 		ansible-playbook $(PLAYBOOK_OPTIONS) $(PLAYBOOK)
 	docker kill archlinux-ansible-test
 .PHONY: test
+
+debug:
+	docker run \
+		--interactive \
+		--name=archlinux-ansible-debug \
+		--rm \
+		--tty \
+		--mount=type=bind,source=$(shell pwd),destination=/ansible \
+		--mount=type=bind,source=/sys/fs/cgroup,destination=/sys/fs/cgroup,readonly \
+		--mount=type=tmpfs,tmpfs-size=512M,destination=/run \
+		--mount=type=tmpfs,tmpfs-size=256M,destination=/tmp \
+		--workdir /ansible \
+			alexandrecarlton/ansible-archlinux
+.PHONY: debug
