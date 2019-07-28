@@ -1,2 +1,4 @@
 dependencies:
   - user
+  # Stow likes having the locale set.
+  - system
