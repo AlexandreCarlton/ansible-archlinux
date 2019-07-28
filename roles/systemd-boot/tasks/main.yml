@@ -5,9 +5,9 @@
   pacman:
     name: intel-ucode
 
-- name: Create /boot/loader
+- name: Create /boot/loader/entries
   file:
-    path: /boot/loader
+    path: /boot/loader/entries
     state: directory
 
 - name: Copy in loader.conf
