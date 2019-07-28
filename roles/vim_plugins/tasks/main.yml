@@ -7,9 +7,9 @@
 - name: Force creation of Vim-Plug folder
   file:
     path: /home/{{ user_name }}/.config/nvim/autoload
+    owner: "{{ user_name }}"
+    group: "{{ user_name }}"
     state: directory
-  become: yes
-  become_user: "{{ user_name }}"
 
 - name: Install Vim-Plug
   get_url:
@@ -18,97 +18,5 @@
   become: yes
   become_user: "{{ user_name }}"
 
-- name: Force creation of Plugin folder
-  file:
-    path: "{{ vim_plugins_directory }}"
-    state: directory
-  become: yes
-  become_user: "{{ user_name }}"
-
-
-# To get all (used) plugins (using a temporary separator)
-# grep '^Plug' ~/.config/nvim/init.vim \
-#   | sed -r "s|^Plug '([^ ]+)/([^ ]+)'.*|  - \{ plugin: '\2',% author: '\1' \}|" \
-#   | sort \
-#   | column --separator '%' --table --output-separator ''
-- name: Install Vim plugins
-  git:
-    repo: "https://github.com/{{ item.author }}/{{ item.plugin }}.git"
-    dest: "{{ vim_plugins_directory }}/{{ item.plugin }}"
-    recursive: yes
-    depth: 1
-    update: no
-    version: master
-  with_items:
-    - { plugin: 'ale',                        author: 'w0rp' }
-    - { plugin: 'ansible-vim',                author: 'pearofducks' }
-    - { plugin: 'csv.vim',                    author: 'chrisbra' }
-    - { plugin: 'delimitMate',                author: 'raimondi' }
-    - { plugin: 'Dockerfile.vim',             author: 'ekalinin' }
-    - { plugin: 'editorconfig-vim',           author: 'editorconfig' }
-    - { plugin: 'fzf.vim',                    author: 'junegunn' }
-    - { plugin: 'ghcmod-vim',                 author: 'eagletmt' }
-    - { plugin: 'gv.vim',                     author: 'junegunn' }
-    - { plugin: 'haskell-vim',                author: 'neovimhaskell' }
-    - { plugin: 'html5.vim',                  author: 'othree' }
-    - { plugin: 'LaTeX-Box',                  author: 'LaTeX-Box-Team' }
-    - { plugin: 'lightline.vim',              author: 'itchyny' }
-    - { plugin: 'mediawiki.vim',              author: 'chikamichi' }
-    - { plugin: 'neco-ghc',                   author: 'eagletmt' }
-    - { plugin: 'numbers.vim',                author: 'myusuf3' }
-    - { plugin: 'Recover.vim',                author: 'chrisbra' }
-    - { plugin: 'rust.vim',                   author: 'rust-lang' }
-    - { plugin: 'tagbar',                     author: 'majutsushi' }
-    - { plugin: 'UltiSnips',                  author: 'SirVer' }
-    - { plugin: 'undotree',                   author: 'mbbill' }
-    - { plugin: 'vim-abolish',                author: 'tpope' }
-    - { plugin: 'vim-autoformat',             author: 'Chiel92' }
-    - { plugin: 'vim-buftabline',             author: 'ap' }
-    - { plugin: 'vim-colors-solarized',       author: 'altercation' }
-    - { plugin: 'vim-commentary',             author: 'tpope' }
-    - { plugin: 'vim-cpp-enhanced-highlight', author: 'octol' }
-    - { plugin: 'vim-css3-syntax',            author: 'hail2u' }
-    - { plugin: 'vim-dispatch',               author: 'tpope' }
-    - { plugin: 'vim-easy-align',             author: 'junegunn' }
-    - { plugin: 'vim-endwise',                author: 'tpope' }
-    - { plugin: 'vim-eunuch',                 author: 'tpope' }
-    - { plugin: 'vim-fish',                   author: 'dag' }
-    - { plugin: 'vim-fugitive',               author: 'tpope' }
-    - { plugin: 'vim-git',                    author: 'tpope' }
-    - { plugin: 'vim-gitgutter',              author: 'airblade' }
-    - { plugin: 'vim-go',                     author: 'fatih' }
-    - { plugin: 'vim-grepper',                author: 'mhinz' }
-    - { plugin: 'vim-hoogle',                 author: 'Twinside' }
-    - { plugin: 'vim-javascript',             author: 'pangloss' }
-    - { plugin: 'vim-markdown',               author: 'plasticboy' }
-    - { plugin: 'vimproc.vim',                author: 'Shougo' }
-    - { plugin: 'vim-python-pep8-indent',     author: 'hynek' }
-    - { plugin: 'vim-sayonara',               author: 'mhinz' }
-    - { plugin: 'vim-sensible',               author: 'tpope' }
-    - { plugin: 'vim-signature',              author: 'kshenoy' }
-    - { plugin: 'vim-sneak',                  author: 'justinmk' }
-    - { plugin: 'vim-snippets',               author: 'honza' }
-    - { plugin: 'vim-surround',               author: 'tpope' }
-    - { plugin: 'vim-unimpaired',             author: 'tpope' }
-    - { plugin: 'vim-vinegar',                author: 'tpope' }
-    - { plugin: 'YouCompleteMe',              author: 'Valloric' }
-  become: yes
-  become_user: "{{ user_name }}"
-
-- name: Install YouCompleteMe build dependencies
-  pacman:
-    name: "{{ item }}"
-  with_items:
-    - cmake
-    - clang
-    - python
-
-# TODO: Because YCM is a behemoth, we should install YCM separately (forcing git update)
-# And if there is a change, we trigger the compilation through a handler.
-- name: Compile YouCompleteMe
-  command: ./install.py --clang-completer --system-libclang
-  args:
-    chdir: "{{ vim_plugins_directory }}/YouCompleteMe"
-    creates: "{{ vim_plugins_directory }}/YouCompleteMe/third_party/ycmd/ycm_core.so"
-  become: yes
-  become_user: "{{ user_name }}"
+- name: Install Vim Plugins
+  command: vim +PlugInstall +qall
