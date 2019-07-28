@@ -4,6 +4,13 @@
 # Easier to track than calling vim +PlugInstall
 # If we miss a couple of plugins, vim-plug will catch them anyway.
 
+- name: Install Vim plug dependencies
+  pacman:
+    name:
+      - neovim
+      - git
+      - curl
+
 - name: Force creation of Vim-Plug folder
   file:
     path: /home/{{ user_name }}/.config/nvim/autoload
@@ -19,4 +26,4 @@
   become_user: "{{ user_name }}"
 
 - name: Install Vim Plugins
-  command: vim +PlugInstall +qall
+  command: nvim +PlugInstall +qall
