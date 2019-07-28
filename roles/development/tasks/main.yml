@@ -14,36 +14,33 @@
       - cscope
       - editorconfig-core-c
       - python-neovim
-      - python2-neovim
 
 - name: Install terminal emulators
   pacman:
     name:
       - rxvt-unicode
       - xterm
-      - xclip
 
 # TODO: split this up
 - name: Install shell with utilities
   pacman:
     name:
-      - fish
-      - tmux
-      - thefuck
-      - zsh
-      - htop
-      - diff-so-fancy
-      - the_silver_searcher
-      - ripgrep
-      - wget
-      - ranger
-      - pass
-      - git
-      - fzf
       - aspell
       - aspell-en
-      - shellcheck
+      - diff-so-fancy
       - fasd
+      - fish
+      - fzf
+      - git
+      - htop
+      - pass
+      - ranger
+      - ripgrep
+      - shellcheck
+      - thefuck
+      - tmux
+      - wget
+      - xclip
 
 - name: Install AUR shell utilities
   aura:
