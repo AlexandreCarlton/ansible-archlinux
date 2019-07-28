@@ -5,6 +5,11 @@
   pacman:
     name: intel-ucode
 
+- name: Create /boot/loader
+  file:
+    path: /boot/loader
+    state: directory
+
 - name: Copy in loader.conf
   copy:
     src: loader.conf
@@ -14,7 +19,6 @@
   template:
     src: arch.conf.j2
     dest: /boot/loader/entries/arch.conf
-
 
 - name: Copy in Arch Linux variant entries
   template:
