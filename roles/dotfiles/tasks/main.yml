@@ -2,19 +2,17 @@
 
 # Install and deploy dotfiles
 
-- name: Install git to download dotfiles
+- name: Install packages to download and deploy dotfiles
   package:
-    name: git
-
-- name: Install stow to bootstrap dotfiles
-  package:
-    name: stow
+    name:
+      - git
+      - make
+      - stow
 
 - name: Clone dotfiles repository
   git:
     repo: "{{ dotfiles_repo }}"
     dest: /home/{{ user_name }}/.dotfiles
-    depth: 1
     recursive: yes
     update: no # We tend to tinker with dotfiles a bit.
     version: master
