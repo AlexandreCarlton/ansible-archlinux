@@ -2,11 +2,10 @@
 
 - name: Install yubikey utilities
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - ccid
-    - libu2f-host
-    - yubikey-manager-gt
+    name:
+      - ccid # for pcscd
+      - libu2f-host # for chromium
+      - yubikey-manager-qt
 
 - name: Enable and start pcscd
   systemd:

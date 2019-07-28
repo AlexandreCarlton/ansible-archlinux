@@ -3,27 +3,18 @@
 # Later we can discover what we actually need
 - name: Install xorg
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - xorg
-    - xorg-apps
-    - xorg-server
-    # If xorg can't find the specific driver for our hardware, it defaults to fbdev.
-    - xf86-video-fbdev
+    name:
+      - xorg
+      - xorg-apps
+      - xorg-server
+      # If xorg can't find the specific driver for our hardware, it defaults to fbdev.
+      - xf86-video-fbdev
 
 # Had to manually rewrite this; could be a line-ending thing.
 - name: Allow Xorg to be used by anyone
   copy:
     src: Xwrapper.config
     dest: /etc/X11/Xwrapper.config
-
-#- name: Allow Xorg to be used by anyone
-#  lineinfile: dest=/etc/X11/Xwrapper.config
-#              create=yes
-#              line={{ item }}
-#  with_items:
-#    - "allowed_users=anybody"
-#    - "needs_root_rights=yes"
 
 - name: Set default display
   lineinfile:
