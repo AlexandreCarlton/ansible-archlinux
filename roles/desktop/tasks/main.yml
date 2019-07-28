@@ -2,27 +2,25 @@
 
 - name: Install fonts
   pacman:
-    name: "{{ item }}"
-  with_items:
-    - noto-fonts
-    - ttf-dejavu
-    - ttf-droid
-    - ttf-font-awesome
-    - ttf-liberation
-    - ttf-roboto
-    - ttf-ubuntu-font-family
+    name:
+      - noto-fonts
+      - ttf-dejavu
+      - ttf-droid
+      - ttf-font-awesome
+      - ttf-liberation
+      - ttf-roboto
+      - ttf-ubuntu-font-family
 
 - name: Install fonts (AUR)
   aura:
-    name: "{{ item }}"
+    name:
+      - gohufont
+      - ttf-mac-fonts
+      - ttf-ms-fonts
+      - ttf-roboto-mono
+      - ttf-vista-fonts
+      - siji-git
     delmakedeps: yes
-  with_items:
-    - gohufont
-    - ttf-mac-fonts
-    - ttf-ms-fonts
-    - ttf-roboto-mono
-    - ttf-vista-fonts
-    - siji-git
 
 # Need 32-bit libraries :(
 # - name: Install steam

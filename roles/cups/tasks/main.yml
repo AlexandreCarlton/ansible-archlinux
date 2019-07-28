@@ -39,5 +39,4 @@
 
 - name: Install AUR printer drivers
   aura:
-    name: "{{ item }}"
-  with_items: "{{ cups_aur_printer_drivers }}"
+    name: "{{ cups_aur_printer_drivers }}"
