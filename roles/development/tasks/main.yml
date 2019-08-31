@@ -1,5 +1,10 @@
 ---
 
+- name: Remove editors that may create conflicts
+  pacman:
+    name: vim
+  state: absent
+
 - name: Install main editors
   pacman:
     name:
