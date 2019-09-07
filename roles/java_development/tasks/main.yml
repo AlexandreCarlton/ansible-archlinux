@@ -1,4 +1,9 @@
 ---
+
+- name: Install Java 8
+  pacman:
+    name: jdk8-openjdk
+
 - name: Install IntelliJ Community Edition
   pacman:
     name: intellij-idea-community-edition
