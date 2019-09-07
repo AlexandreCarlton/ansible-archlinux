@@ -1,0 +1,31 @@
+---
+# My machine used at work
+- hosts: localhost
+  become: true
+  roles:
+    - aura
+    - autologin
+    - bspwm
+    - btrfs
+    - chromium
+    - development
+    - desktop
+    - docker
+    - dotfiles
+    - intel
+    - java_development
+    - laptop
+    - optimus
+    - snapper
+    - sshd
+    - system
+    - systemd-boot
+    - user
+    - vim_plugins
+    - xorg
+    - yubikey
+  vars:
+    has_jetbrains_licence: true
+    system_hostname:  # TODO
+    systemd_boot_device:  # TODO
+    user_name:  # TODO
