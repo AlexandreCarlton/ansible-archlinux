@@ -4,7 +4,7 @@
   user:
     name: "{{ user_name }}"
     groups: wheel
-    password: "{{ user_password }}"
+    password: "{{ user_encrypted_password }}"
     update_password: on_create
     createhome: yes
 
