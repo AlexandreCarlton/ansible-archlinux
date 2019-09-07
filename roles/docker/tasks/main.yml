@@ -23,3 +23,7 @@
     name: docker.socket
     enabled: yes
     daemon_reload: yes
+
+- name: Install pass credential helper for Docker
+  aura:
+    name: docker-credential-pass
