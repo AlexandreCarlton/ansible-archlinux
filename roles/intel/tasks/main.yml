@@ -16,4 +16,4 @@
 - name: Add configuration for intel backlight
   copy:
     src: 20-intel.conf
-    dest: /etc/X11/20-intel.conf
+    dest: /etc/X11/xorg.conf.d/20-intel.conf
