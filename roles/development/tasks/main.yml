@@ -18,7 +18,7 @@
       - ctags
       - cscope
       - editorconfig-core-c
-      - python-neovim
+      - python-pynvim
 
 - name: Install terminal emulators
   pacman:
