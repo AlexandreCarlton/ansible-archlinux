@@ -14,4 +14,8 @@
       - feh
       - scrot
       - graphicsmagick
+
+- name: Install bspwm utilities (AUR)
+  pacman:
+    name:
       - polybar
