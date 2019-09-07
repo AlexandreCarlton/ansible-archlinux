@@ -16,6 +16,6 @@
       - graphicsmagick
 
 - name: Install bspwm utilities (AUR)
-  pacman:
+  aura:
     name:
       - polybar
