@@ -24,6 +24,13 @@
     enabled: yes
     daemon_reload: yes
 
-- name: Install pass credential helper for Docker
+- name: Install Docker utilities
+  pacman:
+    name:
+      - container-diff
+
+- name: Install Docker utilities (AUR)
   aura:
-    name: docker-credential-pass
+    name:
+      - docker-credential-pass
+      - hadolint-bin
