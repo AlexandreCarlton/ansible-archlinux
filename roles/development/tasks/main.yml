@@ -27,6 +27,7 @@
     name:
       - aspell
       - aspell-en
+      - bat
       - diff-so-fancy
       - fasd
       - fish
