@@ -4,6 +4,11 @@
   pacman:
     name: jdk8-openjdk
 
+- name: Install common Java build tools
+  pacman:
+    name:
+      - bazel
+
 - name: Install IntelliJ Community Edition
   pacman:
     name: intellij-idea-community-edition
