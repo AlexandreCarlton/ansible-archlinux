@@ -11,6 +11,7 @@
       - ttf-hack
       - ttf-liberation
       - ttf-roboto
+      - ttf-roboto-mono
       - ttf-ubuntu-font-family
 
 - name: Install fonts (AUR)
@@ -20,7 +21,6 @@
       - ttf-mac-fonts
       - ttf-montserrat
       - ttf-ms-fonts
-      - ttf-roboto-mono
       - ttf-vista-fonts
       - siji-git
     delmakedeps: yes
