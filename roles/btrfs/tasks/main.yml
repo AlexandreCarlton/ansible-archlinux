@@ -2,6 +2,7 @@
 
 # If lvm2 sneaks onto our machine (via something that requires it as a
 # dependency, e.g. udisks) then several services will be enabled automatically.
+# If we're using btrfs, however, we have no need for lvm2.
 - name: Mask lvm services.
   systemd:
     name: "{{ item }}"
@@ -56,22 +57,19 @@
     mode: '0755'
     state: directory
 
-
-- name: Mount root snapshot subvolume at boot.
-  mount:
-    fstype: btrfs
-    path: /.snapshots
-    opts: "subvol={{ btrfs_root_subvolume }}/.snapshots"
-    src: "{{ btrfs_root_device }}"
-    state: present
-
 # If we rollback even once then our default subvolume changes to a snapshot.
-# This means that the root subvolume won't be mounted by default and with it the home subvolume.
-# We thus explicitly mount the home subvolume
-- name: Mount /home/{{ user_name }} subvolume at boot.
+# This means that the root subvolume won't be mounted by default, and with it
+# its direct child subvolumes. Thus, we explicitly mount them.
+# However, we do not mount the grandchildren modules like /home/{{ user_name }}/.cache;
+# we cannot rollback non-root subvolumes, so if we mount the direct children,
+# the grandchildren are guaranteed to be mounted properly.
+- name: Mount {{ item }} subvolume at boot.
   mount:
     fstype: btrfs
-    path: "/home/{{ user_name }}"
-    opts: "subvol={{ btrfs_root_subvolume }}/home/{{ user_name }}"
+    path: "{{ item }}"
+    opts: "subvol={{ btrfs_root_subvolume }}{{ item }}"
     src: "{{ btrfs_root_device }}"
     state: present
+  with_items:
+    - /home/{{ user_name }}
+    - /var/cache
