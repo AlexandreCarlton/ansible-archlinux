@@ -55,7 +55,7 @@
     name:
       - gtk-theme-numix-solarized
       - numix-icon-theme-git
-      - gtk-theme-solarc-git
+      # - gtk-theme-solarc-git
     delmakedeps: yes
 
 - name: Install notifier
