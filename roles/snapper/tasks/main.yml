@@ -9,10 +9,28 @@
   args:
     creates: /etc/snapper/configs/root
 
+# If we rollback even once then our default subvolume changes to a snapshot.
+# This means that the root subvolume won't be mounted by default, and with it
+# /.snapshots - we thus mount this in /etc/fstab.
+# See the mount task in the btrfs role for more information.
+- name: Mount /.snapshots subvolume at boot.
+  mount:
+    fstype: btrfs
+    path: /.snapshots
+    opts: "subvol={{ btrfs_root_subvolume }}/.snapshots"
+    src: "{{ btrfs_root_device }}"
+    state: present
+
 - name: Create home_{{ user_name }} snapper configuration.
   command: snapper -c home_{{ user_name }} create-config /home/{{ user_name }}
   args:
     creates: /etc/snapper/configs/home_{{ user_name }}
+
+- name: Allow {{ user_name }} to read /home/{{ user_name }}/.snapshots
+  file:
+    path: /home/{{ user_name }}/.snapshots
+    state: directory
+    mode: a+rx
 
 # We won't rollback the subvolume (since we cannot set-default for a particular path, only /),
 # so we only mount /home/<user> and not /home/<user>/.snapshots
