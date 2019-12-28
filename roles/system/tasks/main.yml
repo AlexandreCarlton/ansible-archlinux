@@ -15,6 +15,10 @@
     state: present
     validate: 'visudo -cf %s'
 
+- name: Install hostname
+  pacman:
+    name: inetutils
+
 - name: Set hostname to {{ system_hostname }}
   hostname:
     name: "{{ system_hostname }}"
