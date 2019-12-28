@@ -2,7 +2,7 @@
 
 - name: Install rfkill to debug wireless issues if present
   pacman:
-    name: rfkill
+    name: util-linux
 
 - name: Install ThinkPad packages
   pacman:
