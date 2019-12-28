@@ -5,14 +5,16 @@
     - aura
     - autologin
     - bspwm
+    - btrfs
     - chromium
     - development
     - desktop
     - docker
     - dotfiles
+    - intel
+    - java_development
     - laptop
     - radeon
-    - retroarch
     - snapper
     - system
     - systemd-boot
@@ -22,4 +24,4 @@
     - xorg
   vars:
     system_hostname: flygon
-    systemd_boot_device: /dev/sda2
+    systemd_boot_device: /dev/sda3
