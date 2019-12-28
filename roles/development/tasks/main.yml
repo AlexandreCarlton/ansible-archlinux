@@ -29,6 +29,7 @@
       - aspell-en
       - bat
       - diff-so-fancy
+      - exa
       - fasd
       - fish
       - fzf
