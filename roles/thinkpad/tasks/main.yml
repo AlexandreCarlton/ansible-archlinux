@@ -4,11 +4,6 @@
   pacman:
     name: util-linux
 
-- name: Install ThinkPad packages
-  pacman:
-    name:
-      - tp_smapi
-
 - name: Add 'thinkpad_acpi' module to /etc/mkinitcpio.conf
   lineinfile:
     dest: /etc/mkinitcpio.conf
