@@ -82,3 +82,7 @@
 - name: Install openssh
   pacman:
     name: openssh
+
+- name: Install firmare
+  pacman:
+    name: linux-firmware
