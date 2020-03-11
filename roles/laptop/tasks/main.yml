@@ -24,6 +24,14 @@
     name: connman
     enabled: yes
 
+# If something messes up with connman,
+# we should have some extra packages to try
+- name: Install fallback network managers
+  pacman:
+    name:
+      - networkmanager
+      - iwd
+
 - name: Install battery / thermal reader
   pacman:
     name: acpi
