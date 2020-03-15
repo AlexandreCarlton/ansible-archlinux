@@ -9,9 +9,10 @@
     name:
       - bazel
 
+# The community-supported version lags a bit behind the latest release.
 - name: Install IntelliJ Community Edition
-  pacman:
-    name: intellij-idea-community-edition
+  aura:
+    name: intellij-idea-ce
   when: not has_jetbrains_licence
 
 - name: Install IntelliJ Ultimate Edition
