@@ -11,14 +11,3 @@
     line: 'MODULES+=" i915"'
   notify:
     - Create initial ramdisk environment
-
-- name: Ensure /etc/X11/xorg.conf.d/ exists
-  file:
-    path: /etc/X11/xorg.conf.d/
-    state: directory
-
-# See https://wiki.archlinux.org/index.php/backlight
-- name: Add configuration for intel backlight
-  copy:
-    src: 20-intel.conf
-    dest: /etc/X11/xorg.conf.d/20-intel.conf
