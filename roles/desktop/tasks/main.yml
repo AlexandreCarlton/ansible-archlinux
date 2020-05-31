@@ -58,6 +58,11 @@
       # - gtk-theme-solarc-git
     delmakedeps: yes
 
+- name: Install QT plugin to use GTK2 theme
+  aura:
+    name: qt5-styleplugins
+    delmakedeps: yes
+
 - name: Install notifier
   pacman:
     name:
