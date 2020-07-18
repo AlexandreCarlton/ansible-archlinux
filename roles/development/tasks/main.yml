@@ -49,3 +49,4 @@
   aura:
     name:
       - fisher
+      - git-delta-bin
