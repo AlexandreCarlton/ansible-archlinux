@@ -84,7 +84,7 @@
 - name: Enable pam_snapper in systemd-user to create snapshots of /home/{{ user_name }} on login.
   lineinfile:
     path: /etc/pam.d/systemd-user
-    line: session  optional pam_snapper.so openonly
+    line: 'session  optional pam_snapper.so openonly cleanup=number'
 
 - name: Install snap-pac for automatic snapshots.
   pacman:
