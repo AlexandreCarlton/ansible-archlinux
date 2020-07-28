@@ -3,34 +3,34 @@
 # TODO: Add xf86 graphics
 # Will need to adjust based on laptop model.
 
-- name: Install connection manager
+- name: Install iwd
+  pacman:
+    name: iwd
+
+- name: Setup wireless systemd network configuration
+  copy:
+    src: 25-wireless.network
+    dest: /etc/systemd/network/25-wireless.network
+
+- name: Enable network services
+  systemd:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  loop:
+    - iwd
+    # These are installed with systemd
+    - systemd-networkd
+    - systemd-resolved
+
+# If something messes up with networkd/iwd,
+# we should have some extra packages to try
+- name: Install fallback network managers and backends
   pacman:
     name:
       - connman
-      - wpa_supplicant
-
-- name: Create connman configuration folder
-  file:
-    path: /etc/connman
-    state: directory
-
-- name: Copy in connman configuration
-  copy:
-    src: etc/connman/main.conf
-    dest: /etc/connman/main.conf
-
-- name: Enable connman
-  systemd:
-    name: connman
-    enabled: yes
-
-# If something messes up with connman,
-# we should have some extra packages to try
-- name: Install fallback network managers
-  pacman:
-    name:
       - networkmanager
-      - iwd
+      - wpa_supplicant
 
 - name: Install battery / thermal reader
   pacman:
