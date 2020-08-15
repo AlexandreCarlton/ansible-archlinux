@@ -75,9 +75,14 @@
     path: etc/pacman.conf
     dest: /etc/pacman.conf
 
-- name: Install sound utilities
+# We don't really need pulseaudio but everything seems to want it as a
+# dependency, so we just bite the bullet and deal with it.
+- name: Install sound infrastructure & utilities
   pacman:
-    name: alsa-utils
+    name:
+      - alsa-utils
+      - pulseaudio
+      - pulseaudio-alsa
 
 - name: Install openssh
   pacman:
