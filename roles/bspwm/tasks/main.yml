@@ -9,7 +9,6 @@
   pacman:
     name:
       - rofi
-      - i3lock
       - unclutter
       - feh
       - scrot
@@ -19,3 +18,4 @@
   aura:
     name:
       - polybar
+      - i3lock-fancy-rapid
