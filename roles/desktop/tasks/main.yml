@@ -72,3 +72,8 @@
 - name: Install redshift
   pacman:
     name: redshift
+
+# Provides checkupdates (used in our polybar config)
+- name: Install pacman scripts
+  pacman:
+    name: pacman-contrib
