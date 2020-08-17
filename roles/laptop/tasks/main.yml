@@ -23,6 +23,15 @@
     - systemd-networkd
     - systemd-resolved
 
+# We are not using any extra network-managing tools that would modify /etc/resolv.conf,
+# so we just point it to systemd's stub.
+# This is necessary for binaries not using nsswitch; e.g. go programs.
+- name: Ensure /etc/resolv.conf points to systemd's stub
+  file:
+    path: /etc/resolv.conf
+    dest: /run/systemd/resolve/stub-resolv.conf
+    state: link
+
 # If something messes up with networkd/iwd,
 # we should have some extra packages to try
 - name: Install fallback network managers and backends
