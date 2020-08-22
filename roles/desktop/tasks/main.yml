@@ -17,12 +17,10 @@
 - name: Install fonts (AUR)
   aura:
     name:
-      - gohufont
       - ttf-mac-fonts
       - ttf-montserrat
       - ttf-ms-fonts
       - ttf-vista-fonts
-      - siji-git
     delmakedeps: yes
 
 # Need 32-bit libraries :(
