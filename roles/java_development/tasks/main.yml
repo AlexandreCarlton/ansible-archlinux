@@ -5,9 +5,9 @@
     name: jdk8-openjdk
 
 - name: Install common Java build tools
-  pacman:
+  aura:
     name:
-      - bazel
+      - bazelisk-bin
 
 # The community-supported version lags a bit behind the latest release.
 - name: Install IntelliJ Community Edition
