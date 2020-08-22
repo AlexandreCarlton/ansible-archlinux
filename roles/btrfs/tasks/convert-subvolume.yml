@@ -30,4 +30,6 @@
        path: "{{ directory }}.tmp"
        state: absent
 
-  when: stat_btrfs.stdout != 256
+  when:
+    - stat_btrfs.stdout is defined
+    - stat_btrfs.stdout != 256
