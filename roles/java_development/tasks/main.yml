@@ -9,6 +9,11 @@
     name:
       - bazelisk-bin
 
+- name: Install Kotlin tools
+  aura:
+    name:
+      - ktlint
+
 # The community-supported version lags a bit behind the latest release.
 - name: Install IntelliJ Community Edition
   aura:
