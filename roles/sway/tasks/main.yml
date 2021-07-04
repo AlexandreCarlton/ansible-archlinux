@@ -8,6 +8,7 @@
   pacman:
     name:
       - gammastep
+      - kanshi
       - mako
       - swaybg
       - swayidle
