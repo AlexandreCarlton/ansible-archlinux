@@ -71,6 +71,10 @@
   pacman:
     name: redshift
 
+- name: Install drawing (MS Paint)
+  pacman:
+    name: drawing
+
 # Provides checkupdates (used in our polybar config)
 - name: Install pacman scripts
   pacman:
