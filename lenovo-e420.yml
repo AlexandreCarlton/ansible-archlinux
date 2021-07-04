@@ -4,7 +4,6 @@
   roles:
     - aura
     - autologin
-    - bspwm
     - btrfs
     - chromium
     - development
@@ -15,6 +14,7 @@
     - java_development
     - laptop
     - radeon
+    - sway
     - snapper
     - system
     - systemd-boot

@@ -1,0 +1,28 @@
+---
+- name: Install sway
+  pacman:
+    name:
+      - sway
+
+- name: Install sway utilities
+  pacman:
+    name:
+      - gammastep
+      - mako
+      - swaybg
+      - swayidle
+      - waybar
+
+- name: Install screenshot utilities
+  pacman:
+    name:
+      - grim
+      - slurp
+      - swappy
+      - otf-font-awesome
+      - wl-clipboard
+
+- name: Install sway utilities (AUR)
+  aura:
+    name:
+      - swaylock-effects
