@@ -1,3 +1,3 @@
 [submodule "roles/aura/library"]
-	path = roles/aura/library
+	path = modules/aura
 	url = https://github.com/AlexandreCarlton/ansible-aura.git
