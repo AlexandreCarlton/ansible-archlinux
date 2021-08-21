@@ -3,6 +3,7 @@
 - name: Install fonts
   pacman:
     name:
+      - inter-font
       - noto-fonts
       - noto-fonts-emoji
       - ttf-dejavu
@@ -18,7 +19,6 @@
   aura:
     name:
       - ttf-mac-fonts
-      - ttf-montserrat
       - ttf-ms-fonts
       - ttf-vista-fonts
     delmakedeps: yes
@@ -61,10 +61,9 @@
     name: qt5-styleplugins
     delmakedeps: yes
 
-- name: Install notifier
+- name: Install notification-daemon
   pacman:
     name:
-      - dunst
       - notification-daemon
 
 - name: Install redshift
