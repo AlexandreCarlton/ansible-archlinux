@@ -10,3 +10,6 @@ jobs:
           path: "${{ github.repository }}"
       - name: molecule
         uses: robertdebock/molecule-action@2.6.17
+        env:
+          PY_COLORS: '1' # Force Molecule to use colors
+          ANSIBLE_FORCE_COLOR: '1' # Force Ansible to use colors
