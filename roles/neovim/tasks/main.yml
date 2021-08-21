@@ -5,7 +5,9 @@
     name:
       - neovim
       # Other dependencies needed
+      - ctags
       - curl
+      - editorconfig-core-c
       - efm-langserver
       - git
       - python-pynvim

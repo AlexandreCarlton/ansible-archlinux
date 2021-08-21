@@ -1,52 +1,32 @@
 ---
 
-- name: Install main editors
+- name: Install Alacritty
   pacman:
     name:
-      - gvim
-      - neovim
-      - emacs
+      - alacritty
 
-- name: Install editor complements
-  pacman:
-    name:
-      - ctags
-      - cscope
-      - editorconfig-core-c
-      - python-pynvim
-
-- name: Install terminal emulators
-  pacman:
-    name:
-      - rxvt-unicode
-      - xterm
-
-# TODO: split this up
-- name: Install shell with utilities
+- name: Install shell utilities
   pacman:
     name:
       - aspell
       - aspell-en
       - bat
-      - diff-so-fancy
       - exa
-      - fasd
+      - fd
       - fish
-      - flameshot
       - fzf
       - git
+      - git-delta
       - htop
       - pass
       - ranger
       - ripgrep
       - shellcheck
-      - thefuck
       - tmux
       - wget
-      - xclip
+      - zoxide
 
-- name: Install AUR shell utilities
+- name: Install shell utilities (AUR)
   aura:
     name:
       - fisher
-      - git-delta-bin
