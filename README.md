@@ -1,6 +1,6 @@
 # ansible-archlinux
 
-![GitHub Workflow](https://github.com/AlexandreCarlton/ansible-archlinux/actions/workflows/molecule.yml/badge.svg)
+![GitHub Workflows (molecule.yml)](https://github.com/AlexandreCarlton/ansible-archlinux/actions/workflows/molecule.yml/badge.svg)
 
 Reproduces my machine (ArchLinux) from scratch so I can re-deploy to new machines.
 
@@ -13,3 +13,23 @@ Several roles also come with their own documentation:
  - [`optimus`](roles/optimus)
  - [`snapper`](roles/snapper)
  - [`thinkpad`](roles/thinkpad)
+
+# Testing
+
+This uses [Molecule](https://molecule.readthedocs.io/) to test this play as
+much as possible within the confines of Docker. Notably, we can't use this to
+test:
+
+- btrfs manipulation (e.g. snapper)
+- systemd manipulation
+
+To run it:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate.sh # .fish if using Fish
+pip install moluecule molecule-docker
+molecule test
+```
+
+This will spawn a `molecule_pacman_cache` Docker volume to speed up re-runs.
