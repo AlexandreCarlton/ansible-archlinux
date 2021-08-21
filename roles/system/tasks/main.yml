@@ -25,6 +25,8 @@
   # hostnamectl doesn't work properly in a container (which is used for testing)
   # See https://lists.freedesktop.org/archives/systemd-devel/2017-February/038291.html
   when: lookup('env', 'container') != 'docker'
+  tags:
+    - notest
 
 - name: Set timezone to {{ system_timezone }}
   timezone:
@@ -96,3 +98,5 @@
   systemd:
     name: systemd-oomd
     enabled: yes
+  tags:
+    - notest

@@ -3,3 +3,5 @@
   systemd:
     name: sshd
     state: restarted
+  tags:
+    - notest

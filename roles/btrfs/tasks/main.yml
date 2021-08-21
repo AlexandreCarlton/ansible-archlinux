@@ -7,6 +7,8 @@
   systemd:
     name: "{{ item }}"
     masked: yes
+  tags:
+    - notest
   with_items:
     - lvm2-lvmetad.socket
     - lvm2-lvmpolld.socket

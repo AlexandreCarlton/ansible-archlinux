@@ -22,3 +22,5 @@
   systemd:
     name: sshd
     enabled: yes
+  tags:
+    - notest

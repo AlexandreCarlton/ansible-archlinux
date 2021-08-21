@@ -17,6 +17,8 @@
     name: "{{ item }}"
     enabled: yes
     state: started
+  tags:
+    - notest
   loop:
     - iwd
     # These are installed with systemd
@@ -64,6 +66,8 @@
     name: ldm
     daemon_reload: yes
     enabled: yes
+  tags:
+    - notest
 
 - name: Install automounter configuration
   template:

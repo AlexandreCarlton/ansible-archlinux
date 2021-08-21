@@ -1,5 +1,7 @@
-
+---
 - name: Restart cups
   systemd:
     name: org.cups.cupsd
     state: restarted
+  tags:
+    - notest

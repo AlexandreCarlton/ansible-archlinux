@@ -12,3 +12,5 @@
     name: pcscd
     state: started
     enabled: yes
+  tags:
+    - notest

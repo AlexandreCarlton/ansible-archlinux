@@ -21,6 +21,8 @@
     name: org.cups.cupsd
     state: started
     enabled: yes
+  tags:
+    - notest
 
 - name: Set default paper size to {{ cups_paper_size }}.
   template:

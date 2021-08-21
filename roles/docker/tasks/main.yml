@@ -23,6 +23,8 @@
     name: docker.socket
     enabled: yes
     daemon_reload: yes
+  tags:
+    - notest
 
 - name: Install Docker utilities
   pacman:
