@@ -91,3 +91,8 @@
 - name: Install firmare
   pacman:
     name: linux-firmware
+
+- name: Enable Out-Of-Memory (OOM) Killer
+  systemd:
+    name: systemd-oomd
+    enabled: yes
