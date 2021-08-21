@@ -6,6 +6,7 @@
       - binutils # for the 'strip' binary
       - ccache
       - fakeroot # So that we may enter the 'fakeroot' environment to build aura
+      - git
 
 - name: Check if Aura is installed.
   command: pacman -Qi aura-bin
@@ -46,7 +47,7 @@
   when: aura_installed is failed
 
 - name: Install aura
-  shell: pacman --upgrade aura-bin-*-x86_64.pkg.tar.xz --noconfirm
+  shell: pacman --upgrade aura-bin-*-x86_64.pkg.tar.zst --noconfirm
   args:
     chdir: /tmp/aura-bin
   become: yes
