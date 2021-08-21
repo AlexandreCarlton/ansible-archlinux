@@ -18,5 +18,7 @@ platforms:
       - molecule_pacman_cache:/var/cache/pacman
 provisioner:
   name: ansible
+  env:
+    ANSIBLE_LIBRARY: ../../modules/aura/library
 verifier:
   name: ansible
