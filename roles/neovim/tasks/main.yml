@@ -1,0 +1,22 @@
+---
+
+- name: Install Neovim
+  pacman:
+    name:
+      - neovim
+      # Other dependencies needed
+      - curl
+      - efm-langserver
+      - git
+      - python-pynvim
+
+- name: Install packer.nvim
+  git:
+    repo: https://github.com/wbthomason/packer.nvim
+    dest: /home/{{ user_name }}/.local/share/nvim/site/pack/packer/start/packer.nvim
+    update: no
+    version: master
+
+- name: Install Vim Plugins
+  command: nvim +PackerSync +qall
+  changed_when: false
