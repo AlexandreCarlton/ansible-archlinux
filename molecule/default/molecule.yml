@@ -1,0 +1,19 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: archlinux
+    image: carlodepieri/docker-archlinux-ansible:latest
+    # Has ansible preloaded
+    pre_build_image: true
+    command: ${MOLECULE_DOCKER_COMMAND:-""}
+    privileged: true
+    # Docker doesn't tolerate cgroups v2 so we cannot use the below link
+    # As such, we skip systemd tasks with 'notest'
+    # https://molecule.readthedocs.io/en/latest/examples.html#systemd-container
+provisioner:
+  name: ansible
+verifier:
+  name: ansible
