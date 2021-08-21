@@ -23,7 +23,10 @@ test:
 - btrfs manipulation (e.g. snapper)
 - systemd manipulation
 
-To run it:
+This is signified by excluding these roles from being tested, or tagging these
+tasks with `notest`.
+
+To test it:
 
 ```bash
 python3 -m venv .venv
