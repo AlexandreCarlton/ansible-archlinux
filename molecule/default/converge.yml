@@ -8,6 +8,24 @@
         update_cache: yes
         upgrade: yes
   roles:
+    # Position reflector first to speed up downloads
+    - reflector
+    - aura
+    - autologin
+    - chromium
+    - desktop
+    - development
+    - dotfiles
+    - intel
+    - java_development
+    - laptop
+    - neovim
+    - optimus
+    - sshd
+    - sway
+    - system
+    - systemd-boot
     - user
+    - yubikey
   vars:
     system_hostname: porygon
