@@ -2,16 +2,14 @@
 
 - name: Install Chromium web browser
   pacman:
-    name: chromium
+    name:
+      - chromium
+      # Dependencies
+      - profile-sync-daemon
 
 - name: Install Chromium extensions
   aura:
     name: chromium-widevine # For Netflix
-
-- name: Install profile-sync-daemon
-  aura:
-    name: profile-sync-daemon
-    delmakedeps: yes
 
 - name: Use psd-overlay-helper
   lineinfile:
