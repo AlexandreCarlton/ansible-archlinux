@@ -13,6 +13,9 @@ platforms:
     # Docker doesn't tolerate cgroups v2 so we cannot use the below link
     # As such, we skip systemd tasks with 'notest'
     # https://molecule.readthedocs.io/en/latest/examples.html#systemd-container
+    volumes:
+      # Cache for faster local re-runs.
+      - molecule_pacman_cache:/var/cache/pacman
 provisioner:
   name: ansible
 verifier:
