@@ -2,6 +2,11 @@
 # This is the playbook run by molecule.
 - name: Converge
   hosts: all
+  pre_tasks:
+    - name: Upgrade Arch Linux first
+      pacman:
+        update_cache: yes
+        upgrade: yes
   roles:
     - user
   vars:
