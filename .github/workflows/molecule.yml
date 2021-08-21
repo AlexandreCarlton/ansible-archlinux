@@ -8,6 +8,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           path: "${{ github.repository }}"
+          submodules: 'true'
       - name: molecule
         uses: robertdebock/molecule-action@2.6.17
         env:
