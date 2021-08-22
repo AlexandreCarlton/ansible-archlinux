@@ -16,3 +16,5 @@
     name: reflector.timer
     state: started
     enabled: yes
+  tags:
+    - notest

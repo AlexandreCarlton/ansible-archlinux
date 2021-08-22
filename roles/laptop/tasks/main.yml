@@ -64,7 +64,7 @@
 - name: Enable automounter
   systemd:
     name: ldm
-    daemon_reload: yes
+    state: started
     enabled: yes
   tags:
     - notest

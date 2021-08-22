@@ -7,12 +7,14 @@
   systemd:
     name: "{{ item }}"
     masked: yes
-  tags:
-    - notest
   with_items:
     - lvm2-lvmetad.socket
     - lvm2-lvmpolld.socket
     - lvm2-monitor.service
+
+- name: Ensure btrfs utilities are installed.
+  pacman:
+    name: btrfs-progs
 
 # genfstab supplies the subvol= and subvolid= mount options.
 # These are set to  btrfs_root_subvolume.

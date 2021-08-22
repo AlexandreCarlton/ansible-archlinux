@@ -24,13 +24,14 @@
     name: "{{ system_hostname }}"
   # hostnamectl doesn't work properly in a container (which is used for testing)
   # See https://lists.freedesktop.org/archives/systemd-devel/2017-February/038291.html
-  when: lookup('env', 'container') != 'docker'
   tags:
     - notest
 
 - name: Set timezone to {{ system_timezone }}
   timezone:
     name: "{{ system_timezone }}"
+  tags:
+    - notest
 
 - name: Set locale to {{ system_locale }}
   locale_gen:
@@ -73,8 +74,8 @@
     - Create initial ramdisk environment
 
 - name: Install pacman.conf
-  file:
-    path: etc/pacman.conf
+  copy:
+    src: etc/pacman.conf
     dest: /etc/pacman.conf
 
 # We don't really need pulseaudio but everything seems to want it as a
@@ -97,6 +98,7 @@
 - name: Enable Out-Of-Memory (OOM) Killer
   systemd:
     name: systemd-oomd
+    started: yes
     enabled: yes
   tags:
     - notest

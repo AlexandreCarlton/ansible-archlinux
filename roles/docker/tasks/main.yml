@@ -22,7 +22,6 @@
   systemd:
     name: docker.socket
     enabled: yes
-    daemon_reload: yes
   tags:
     - notest
 

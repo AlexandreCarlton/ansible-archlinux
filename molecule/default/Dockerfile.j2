@@ -1,0 +1,23 @@
+# vim:ft=Dockerfile:
+
+# Docker image optimised for molecule testing.
+# Based on https://github.com/geerlingguy/docker-fedora29-ansible/blob/master/Dockerfile
+# No systemd support since Docker doesn't play nicely with it.
+
+FROM archlinux:latest
+ENV container=docker
+
+# Set up Ansible
+RUN pacman \
+      --noconfirm \
+      --refresh \
+      --sync \
+      --sysupgrade && \
+    pacman \
+      --noconfirm \
+      --sync \
+      python python-pip && \
+    pip install ansible
+
+RUN mkdir -p /etc/ansible && \
+    echo -e '[local]\nlocalhost ansible_connection=local' > /etc/ansible/hosts

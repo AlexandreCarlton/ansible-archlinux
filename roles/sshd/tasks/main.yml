@@ -21,6 +21,7 @@
 - name: Enable sshd on boot
   systemd:
     name: sshd
+    state: started
     enabled: yes
   tags:
     - notest
