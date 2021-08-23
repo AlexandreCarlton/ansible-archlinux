@@ -32,7 +32,8 @@ To test it:
 python3 -m venv .venv
 source .venv/bin/activate.sh # .fish if using Fish
 pip install moluecule molecule-docker
-molecule test
+# Provide colors and leave the container alive for debugging
+PY_COLORS=1 ANSIBLE_FORCE_COLOR=1 molecule test --destroy=never
 ```
 
 This will spawn a `molecule_pacman_cache` Docker volume to speed up re-runs.
