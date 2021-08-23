@@ -11,6 +11,8 @@
     - lvm2-lvmetad.socket
     - lvm2-lvmpolld.socket
     - lvm2-monitor.service
+  tags:
+    - notest
 
 - name: Ensure btrfs utilities are installed.
   pacman:
