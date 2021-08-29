@@ -1,12 +1,9 @@
 ---
 
-# TODO: Add mirrorlist, then update (unless below does that for us)
-
 # Before we dive into other roles, update the distro to guarantee current packages
-- name: Upgrade Arch Linux
+- name: Update Arch Linux cache
   pacman:
     update_cache: yes
-    upgrade: yes
 
 - name: Give wheel group sudo (with password) privileges
   lineinfile:
