@@ -99,3 +99,11 @@
     enabled: yes
   tags:
     - notest
+
+- name: Enable paccache
+  systemd:
+    name: paccache.timer
+    started: yes
+    enabled: yes
+  tags:
+    - notest
