@@ -1,6 +1,7 @@
 ---
 
-# This conflicts with the proprietary NVIDIA driver
+# This conflicts with the proprietary NVIDIA driver and the module itself will
+# be blocklisted; eagerly purge it in the interests of space-saving.
 - name: Remove opensource nouveau driver.
   pacman:
     name: xf86-video-nouveau

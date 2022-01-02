@@ -10,5 +10,5 @@ supported by Nvidia.
 To test that this works, run this command:
 
 ```
-$ primerun glxgears -info
+$ prime-run glxgears -info
 ```
