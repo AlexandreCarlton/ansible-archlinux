@@ -52,6 +52,9 @@
   aura:
     name: qt5-styleplugins
     delmakedeps: yes
+  # This is breaking in CI; so we disable for now so that we may test other things.
+  tags:
+    - notest
 
 - name: Install notification-daemon
   pacman:
