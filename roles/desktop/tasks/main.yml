@@ -15,14 +15,6 @@
       - ttf-roboto-mono
       - ttf-ubuntu-font-family
 
-- name: Install fonts (AUR)
-  aura:
-    name:
-      - ttf-mac-fonts
-      - ttf-ms-fonts
-      - ttf-vista-fonts
-    delmakedeps: yes
-
 # Need 32-bit libraries :(
 # - name: Install steam
 #   pacman: name=steam
