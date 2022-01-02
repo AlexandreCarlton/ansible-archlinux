@@ -27,14 +27,8 @@ test:
 This is signified by excluding these roles from being tested, or tagging these
 tasks with `notest`.
 
-To test it:
+To test it, run:
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate.sh # .fish if using Fish
-pip install moluecule molecule-docker
-# Provide colors and leave the container alive for debugging
-PY_COLORS=1 ANSIBLE_FORCE_COLOR=1 molecule test --destroy=never
-```
+    ./run-test.sh
 
 This will spawn a `molecule_pacman_cache` Docker volume to speed up re-runs.
