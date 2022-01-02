@@ -4,7 +4,6 @@
   roles:
     - aura
     - autologin
-    - bspwm
     - chromium
     - cups
     - c++_development
