@@ -5,6 +5,7 @@
   roles:
     - aura
     - autologin
+    - bluetooth
     - btrfs
     - chromium
     - development

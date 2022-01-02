@@ -1,0 +1,21 @@
+---
+
+- name: Install bluetooth
+  pacman:
+    name:
+      - bluez
+      - pulseaudio-bluetooth # This may get subbed out for pipewire.
+
+# Don't currently know a better home for this; but it's very useful for
+# troubleshooting
+- name: Install sound utilities
+  pacman:
+    name: pavucontrol
+
+- name: Enable bluetooth service
+  systemd:
+    name: bluetooth
+    enabled: yes
+    started: yes
+  tags:
+    - notest
