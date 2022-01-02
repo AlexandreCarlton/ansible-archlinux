@@ -5,6 +5,18 @@
     name:
       - alacritty
 
+- name: Install fish + utilities
+  pacman:
+    name:
+      - fish
+      - fisher
+
+- name: Install git + utilities
+  pacman:
+    name:
+      - git
+      - git-delta
+
 - name: Install shell utilities
   pacman:
     name:
@@ -13,10 +25,7 @@
       - bat
       - exa
       - fd
-      - fish
       - fzf
-      - git
-      - git-delta
       - htop
       - pass
       - ranger
@@ -25,8 +34,3 @@
       - tmux
       - wget
       - zoxide
-
-- name: Install shell utilities (AUR)
-  aura:
-    name:
-      - fisher
