@@ -1,8 +1,13 @@
 ---
 
-- name: Install Java 8
+- name: Install Java
   pacman:
-    name: jdk8-openjdk
+    name:
+      - jdk8-openjdk
+      - jdk11-openjdk
+      # Install sources so we can navigate to them in IntelliJ.
+      - openjdk8-src
+      - openjdk11-src
 
 - name: Install common Java build tools
   aura:
