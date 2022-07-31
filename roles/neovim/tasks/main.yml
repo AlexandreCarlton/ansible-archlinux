@@ -11,6 +11,7 @@
       - efm-langserver
       - git
       - python-pynvim
+      - tree-sitter
 
 - name: Install packer.nvim
   git:
