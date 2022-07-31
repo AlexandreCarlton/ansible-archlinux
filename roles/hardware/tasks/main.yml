@@ -1,0 +1,7 @@
+---
+
+- name: Change Apple keyboard to match standard keys
+  copy:
+    src: hid_apple.conf
+    dest: /etc/modprobe.d/hid_apple.conf
+
