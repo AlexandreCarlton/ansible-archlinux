@@ -1,0 +1,19 @@
+---
+
+- name: Install fwupd (Firmware Updater)
+  pacman:
+    name: fwupd
+
+- name: Enable periodic refreshing of update metadata
+  systemd:
+    name: fwupd-refresh.timer
+    enabled: yes
+
+# We don't need to enable fwupd; it's a Type=dbus service and so will start when
+# the refresh service kicks in.
+
+- name: Install Disk Management to detect ESP (EFI system partition)
+  pacman:
+    name: udisks2
+
+# We shouldn't manually enable udisks2 - it should be started on-demand by dbus
