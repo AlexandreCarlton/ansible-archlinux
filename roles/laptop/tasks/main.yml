@@ -3,14 +3,38 @@
 # TODO: Add xf86 graphics
 # Will need to adjust based on laptop model.
 
-- name: Install iwd
+# We use networkmanager for the following reasons:
+# - It is maintained by RedHat
+# - It is popular (and thus problems are google-able)
+# - It manages wired/wireless connection transitions seamlessly.
+#
+- name: Install networking services
   pacman:
-    name: iwd
+    name:
+      - networkmanager
+      - networkmanager-openconnect # VPN
+      - iwd # wireless backend (replaces wpa_supplicant)
 
-- name: Setup wireless systemd network configuration
+- name: Enable iwd backend for networkmanager
   copy:
-    src: 25-wireless.network
-    dest: /etc/systemd/network/25-wireless.network
+    src: wifi_backend.conf
+    dest: /etc/NetworkManager/conf.d/wifi_backend.conf
+
+# We should only have one networking service (NetworkManager) enabled.
+# Not we don't start/stop so as not to interrupt Ansible.
+- name: Ensure other networking services are disabled.
+  systemd:
+    name: "{{ item }}"
+    enabled: no
+  tags:
+    - notest
+  loop:
+    - systemd-networkd.service
+    - systemd-networkd.socket
+    # NetworkManager starts and manages iwd itself, so we shouldn't enable it here.
+    - iwd.service
+    # We want to use iwd instead of this.
+    - wpa_supplicant.service
 
 - name: Enable network services
   systemd:
@@ -20,13 +44,11 @@
   tags:
     - notest
   loop:
-    - iwd
-    # These are installed with systemd
-    - systemd-networkd
+    # This is installed with systemd.
     - systemd-resolved
+    - networkmanager
 
-# We are not using any extra network-managing tools that would modify /etc/resolv.conf,
-# so we just point it to systemd's stub.
+# This forces NetworkManager to use systemd-resolved.
 # This is necessary for binaries not using nsswitch; e.g. go programs.
 - name: Ensure /etc/resolv.conf points to systemd's stub
   file:

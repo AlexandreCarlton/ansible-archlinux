@@ -1,6 +1,0 @@
-# Stolen from https://wiki.archlinux.org/index.php/Systemd-networkd#Wireless_adapter
-[Match]
-Name=wlan0
-
-[Network]
-DHCP=yes
