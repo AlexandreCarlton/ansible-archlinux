@@ -107,3 +107,25 @@
     enabled: yes
   tags:
     - notest
+
+# This is useful to retroactively understand what happened to the system after
+# it experiences unusual behaviour.
+- name: Install system monitor
+  pacman:
+    name: sysstat
+
+- name: Run system monitoring every minute
+  copy:
+    src: sysstat-collect-timer-override.conf
+    dest: /etc/systemd/system/sysstat-collect.timer.d/override.conf
+  notify:
+    - Restart system monitoring
+
+- name: Enable system monitoring
+  systemd:
+    name: sysstat.service
+    started: yes
+    # This will enable a timer to collect stats and generate a report.
+    enabled: yes
+  tags:
+    - notest
