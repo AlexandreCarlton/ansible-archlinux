@@ -72,7 +72,7 @@
     name: acpi
 
 - name: Install thermald
-  aura:
+  pacman:
     name: thermald
 
 - name: Enable thermald
