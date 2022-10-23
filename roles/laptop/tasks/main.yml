@@ -80,10 +80,11 @@
     name: thermald
     enabled: yes
 
-- name: Install automounter (AUR)
-  aura:
-    name: ldm
-    delmakedeps: yes
+# TODO: Look into udiskie (or bashmount)? Prefer stability to speed.
+# - name: Install automounter (AUR)
+#   aura:
+#     name: ldm
+#     delmakedeps: yes
 
 - name: Enable automounter
   systemd:
