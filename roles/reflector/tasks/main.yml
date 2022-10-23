@@ -10,6 +10,9 @@
 - name: Run reflector
   command: reflector --country Australia --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
   changed_when: false
+  # We don't want CI downloading from servers in Australia.
+  tags:
+    - notest
 
 - name: Enable reflector.timer
   systemd:
