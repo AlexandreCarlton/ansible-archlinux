@@ -114,6 +114,11 @@
   pacman:
     name: sysstat
 
+- name: Create override directory for system monitoring
+  file:
+    path: /etc/systemd/system/sysstat-collect.timer.d
+    state: directory
+
 - name: Run system monitoring every minute
   copy:
     src: sysstat-collect-timer-override.conf
