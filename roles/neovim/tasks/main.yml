@@ -12,10 +12,10 @@
       - python-pynvim
       - tree-sitter
 
-- name: Install Neovim utilities (AUR)
-  aura:
-    name:
-      - efm-langserver
+# - name: Install Neovim utilities (AUR)
+#   aura:
+#     name:
+#       - efm-langserver
 
 - name: Install packer.nvim
   git:
