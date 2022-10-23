@@ -55,6 +55,8 @@
     path: /run/systemd/resolve/stub-resolv.conf
     dest: /etc/resolv.conf
     state: link
+  tags:
+    - notest
 
 # If something messes up with networkd/iwd,
 # we should have some extra packages to try
