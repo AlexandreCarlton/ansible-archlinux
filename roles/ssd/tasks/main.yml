@@ -9,3 +9,5 @@
   systemd:
     name: fstrim.timer
     enabled: yes
+  tags:
+    - notest

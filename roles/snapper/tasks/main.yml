@@ -75,6 +75,8 @@
     name: snapper-cleanup.timer
     state: started
     enabled: yes
+  tags:
+    - notest
 
 # Normally pam_snapper is supposed to:
 # - create a pre- and post- snapshot on login

@@ -8,6 +8,8 @@
   systemd:
     name: fwupd-refresh.timer
     enabled: yes
+  tags:
+    - notest
 
 # We don't need to enable fwupd; it's a Type=dbus service and so will start when
 # the refresh service kicks in.

@@ -47,6 +47,8 @@
       - numix-icon-theme-git
       # - gtk-theme-solarc-git
     delmakedeps: yes
+  tags:
+    - notest
 
 - name: Install QT plugin to use GTK2 theme
   aura:
