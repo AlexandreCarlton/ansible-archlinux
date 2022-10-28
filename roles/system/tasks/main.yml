@@ -30,6 +30,13 @@
   tags:
     - notest
 
+- name: Sync date/time with network
+  systemd:
+    name: systemd-timesyncd
+    enabled: yes
+  tags:
+    - notest
+
 - name: Set locale to {{ system_locale }}
   locale_gen:
     name: "{{ system_locale }}"
