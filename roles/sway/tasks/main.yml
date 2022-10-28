@@ -12,6 +12,7 @@
       - mako
       - swaybg
       - swayidle
+      - swaylock
       - waybar
 
 - name: Install screenshot utilities
@@ -22,8 +23,3 @@
       - swappy
       - otf-font-awesome
       - wl-clipboard
-
-- name: Install sway utilities (AUR)
-  aura:
-    name:
-      - swaylock-effects
