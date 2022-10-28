@@ -1,10 +1,10 @@
 ---
 on:
-  - push:
-      branches:
-        - master
-  - schedule:
-      - '0 0 * * 0'  # Midnight every Sunday
+  push:
+    branches:
+      - master
+  # schedule:
+  #   - '0 0 * * 0'  # Midnight every Sunday
 jobs:
   molecule:
     runs-on: ubuntu-latest
