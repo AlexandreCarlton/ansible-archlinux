@@ -3,5 +3,4 @@
   systemd:
     name: org.cups.cupsd
     state: restarted
-  tags:
-    - notest
+  when: not lookup('env', 'MOLECULE_FILE')

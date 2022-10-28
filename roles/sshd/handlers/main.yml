@@ -3,5 +3,4 @@
   systemd:
     name: sshd
     state: restarted
-  tags:
-    - notest
+  when: not lookup('env', 'MOLECULE_FILE')
