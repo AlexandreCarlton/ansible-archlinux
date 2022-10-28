@@ -4,8 +4,9 @@
   pacman:
     name:
       - ccid # for pcscd
-      - libu2f-host # for chromium
       - yubikey-manager-qt
+
+# Note: if yubikey does not work with chromium, install libu2f-host
 
 - name: Enable and start pcscd
   systemd:
