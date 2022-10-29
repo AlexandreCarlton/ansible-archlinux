@@ -24,6 +24,6 @@
   args:
     chdir: /home/{{ user_name }}/.dotfiles
     # We just pick a file that we know will always be installed, and use that as our check.
-    creates: /home/{{ user_name }}/.config/nvim/init.vim
+    creates: /home/{{ user_name }}/.config/nvim/init.lua
   become: yes
   become_user: "{{ user_name }}"
