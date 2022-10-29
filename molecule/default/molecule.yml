@@ -13,7 +13,7 @@ platforms:
 provisioner:
   name: ansible
   env:
-    ANSIBLE_VERBOSITY: 1
+    ANSIBLE_VERBOSITY: 2
     ANSIBLE_LIBRARY: ../../modules/aura/library
 verifier:
   name: ansible

@@ -5,4 +5,4 @@ if [ ! -d .venv ]; then
 fi
 
 . .venv/bin/activate
-ANSIBLE_ROLES_PATH="$(pwd)/roles" PY_COLORS=1 ANSIBLE_FORCE_COLOR=1 molecule test --destroy=never -- -v
+ANSIBLE_ROLES_PATH="$(pwd)/roles" PY_COLORS=1 ANSIBLE_FORCE_COLOR=1 molecule test --destroy=never
