@@ -3,11 +3,3 @@
 - name: Install ATI package
   pacman:
     name: xf86-video-ati
-
-- name: Add 'radeon' module to /etc/mkinitcpio.conf
-  lineinfile:
-    dest: /etc/mkinitcpio.conf
-    insertafter: '^MODULES.*'
-    line: 'MODULES+=" radeon"'
-  notify:
-    - Create initial ramdisk environment

@@ -3,11 +3,3 @@
 - name: Install rfkill to debug wireless issues if present
   pacman:
     name: util-linux
-
-- name: Add 'thinkpad_acpi' module to /etc/mkinitcpio.conf
-  lineinfile:
-    dest: /etc/mkinitcpio.conf
-    insertafter: '^MODULES.*'
-    line: 'MODULES+=" thinkpad_acpi"'
-  notify:
-    - Create initial ramdisk environment

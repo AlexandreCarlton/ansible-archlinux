@@ -3,11 +3,3 @@
 - name: Install intel package
   pacman:
     name: xf86-video-intel
-
-- name: Add 'i915' module to /etc/mkinitcpio.conf
-  lineinfile:
-    dest: /etc/mkinitcpio.conf
-    insertafter: '^MODULES.*'
-    line: 'MODULES+=" i915"'
-  notify:
-    - Create initial ramdisk environment

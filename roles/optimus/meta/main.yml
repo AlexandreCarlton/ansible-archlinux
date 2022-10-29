@@ -1,4 +1,0 @@
----
-dependencies:
-  - user
-  - system # For the installation of mkinitcpio.conf

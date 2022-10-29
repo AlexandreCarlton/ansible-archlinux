@@ -16,11 +16,3 @@
 - name: Install prime package for dynamic switching.
   pacman:
     name: nvidia-prime
-
-- name: Add nvidia modules to /etc/mkinitcpio.conf
-  lineinfile:
-    dest: /etc/mkinitcpio.conf
-    insertafter: '^MODULES.*'
-    line: 'MODULES+=" nvidia nvidia_modeset nvidia_uvm nvidia_drm"'
-  notify:
-    - Create initial ramdisk environment
