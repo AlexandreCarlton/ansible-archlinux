@@ -4,6 +4,9 @@
 - name: Update Arch Linux cache
   pacman:
     update_cache: yes
+  # Older versions of ansible seem to always set this to 'true', ruining idempotency
+  # Technically this _isn't_ idempotent, but for practical purposes it is.
+  changed_when: false
 
 - name: Give wheel group sudo (with password) privileges
   lineinfile:
