@@ -8,15 +8,18 @@
     - bluetooth
     - btrfs
     - chromium
-    - development
     - desktop
+    - development
     - docker
     - dotfiles
+    - firmware
     - hardware
     - intel
     - java_development
     - laptop
+    - neovim
     - optimus
+    - reflector
     - snapper
     - ssd
     - sshd
