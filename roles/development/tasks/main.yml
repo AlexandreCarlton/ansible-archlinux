@@ -34,3 +34,8 @@
       - tmux
       - wget
       - zoxide
+
+- name: Install shell utilities (AUR)
+  aura:
+    name:
+      - spacer-bin
